@@ -74,6 +74,26 @@
     border-radius: 10px;
 }
 
+.card .progress {
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    height: 20px;
+    background-color: #545454;
+    margin-bottom: 20px;
+    margin-left: 9%;
+    align-items: center;
+
+}
+
+.card .progress .progressBar {
+    margin: 0;
+    padding: 0;
+    height: 20px;
+    background-color: #05BDAC;
+    transition: 0.4s;
+}
+
 .card:hover {
     transform: scale(1.1);
     transition: 0.4s;

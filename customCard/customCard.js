@@ -5,9 +5,10 @@ export class customCard extends HTMLElement {
         this.description;
         this.image;
         this.navigation;
+        this.progress;
     }
     static get observedAttributes() {
-        return ["title", "description", "image", "navigation"];
+        return ["title", "description", "image", "navigation", "progress"];
     }
 
     attributeChangedCallback(attribute, oldValue, newValue) {
@@ -25,6 +26,9 @@ export class customCard extends HTMLElement {
                 case "navigation":
                     this.navigation = newValue;
                     break;
+                case "progress":
+                    this.progress = newValue;
+                    break;
             }
         }
     }
@@ -39,10 +43,17 @@ export class customCard extends HTMLElement {
             <div class="article-preview">
                 <h2>${this.title}</h2>
                 <p>${this.description}</p>
+                <div class="progress">
+                <div style="width: ${this.progress}%;" class="progressBar"></div>
+                </div>
                 <a href="${this.navigation}"><button>Ir al curso</button></a>
+                <div>
             </div>
         </div>`;
     }
 }
+
+//<progress max="100" value="¨${this.progress}">${this.progress}%</progress>
+
 
 window.customElements.define('custom-card', customCard);
