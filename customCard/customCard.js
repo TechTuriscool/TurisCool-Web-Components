@@ -40,7 +40,7 @@ export class customCard extends HTMLElement {
             <div class = "image-card">
                 <img src="${this.image}" alt="${this.title}">
             </div>
-            <div class="article-preview">
+            <div class="article-preview typewriter">
                 <h2>${this.title}</h2>
                 <p>${this.description}</p>
                 <div class="skill">
@@ -55,8 +55,5 @@ export class customCard extends HTMLElement {
         </div>`;
     }
 }
-
-//<progress max="100" value="¨${this.progress}">${this.progress}%</progress>
-
 
 window.customElements.define('custom-card', customCard);
