@@ -45,7 +45,7 @@
     bottom: 0;
     width: 100%;
     height: 5px;
-    background: green;
+    background: rgb(255, 0, 0);
     animation: anim 6s linear forwards;
 }
 
@@ -53,4 +53,11 @@
     100% {
         width: 0;
     }
+}
+
+.toast img {
+    width: 60px;
+    height: 60px;
+    margin-left: 20px;
+    border-radius: 50%;
 }

@@ -3,10 +3,13 @@ class customToast extends HTMLElement {
         super();
         this.text;
         this.color;
+        this.icon;
+        this.backgroundColor;
+        
     }
 
     static get observedAttributes() {
-        return ["text", "color"];
+        return ["text", "color", "background", "icon"];
     }
 
     attributeChangedCallback(attribute, oldValue, newValue) {
@@ -17,6 +20,12 @@ class customToast extends HTMLElement {
                     break;
                 case "color":
                     this.color = newValue;
+                    break;
+                case "background":
+                    this.background = newValue;
+                    break;
+                case "icon":
+                    this.icon = newValue;
                     break;
             }
         }
@@ -30,7 +39,8 @@ class customToast extends HTMLElement {
         this.classList.add('toastBox');
 
         this.innerHTML = `
-            <div class="toast">
+            <div class="toast" style="background: ${this.background}">
+                <img src="${this.icon}" />
                 <p style="color: ${this.color}">${this.text}</p>
             </div>
         `;
