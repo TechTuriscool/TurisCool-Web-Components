@@ -43,8 +43,11 @@ export class customCard extends HTMLElement {
             <div class="article-preview">
                 <h2>${this.title}</h2>
                 <p>${this.description}</p>
-                <div class="progress">
-                <div style="width: ${this.progress}%;" class="progressBar"></div>
+                <div class="skill">
+                        <div class="skill-bar">
+                            <div class="skill-percentage" per="${this.progress}%" style="max-width:${this.progress}%"></div>
+                        </div>
+                    </div>
                 </div>
                 <a href="${this.navigation}"><button>Ir al curso</button></a>
                 <div>

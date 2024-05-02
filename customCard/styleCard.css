@@ -74,24 +74,61 @@
     border-radius: 10px;
 }
 
-.card .progress {
-    width: 80%;
-    margin: 0;
-    padding: 0;
-    height: 20px;
-    background-color: #545454;
-    margin-bottom: 20px;
-    margin-left: 9%;
-    align-items: center;
 
+.skills {
+  width: 100%;
+  padding: 0 20px;
 }
 
-.card .progress .progressBar {
-    margin: 0;
-    padding: 0;
-    height: 20px;
-    background-color: #05BDAC;
-    transition: 0.4s;
+.skill-bar {
+  margin-left: 9%;
+  width: 80%;
+  height: 10px;
+  background: #dbe0e7;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 5px 0px rgba(119, 119, 119, 0.75);}
+
+.skill-percentage {
+  height: 10px;
+  background: #05BFAD;
+  border-radius: 3px;
+  position: relative;
+  animation: fillBars 2.5s 1;
+}
+
+.skill-percentage::before{
+  content: attr(per);
+  position: absolute;
+  padding: 4px 6px;
+  background: #dbd8db;
+  border-radius: 4px;
+  font-size: 12px;
+  top: -30px;
+  right: 0;
+  transform: transition(50%);
+  font-size: 11px;
+}
+
+.skill-percentage::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #005A8D;
+  top: -18px;
+  right: 0;
+  transform: translateX(50%) rotate(45deg);
+  border-radius: 2px;
+}
+
+@keyframes fillBars {
+  from{
+    width: 0;
+  }
+  to{
+   width: 100%; 
+  }
 }
 
 .card:hover {

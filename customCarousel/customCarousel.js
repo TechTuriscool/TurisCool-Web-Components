@@ -95,6 +95,7 @@ export class customCarousel extends HTMLElement {
                                 description="${this.descriptions[index]}" 
                                 image="${this.images[index]}"
                                 navigation="${this.navigations[index]}"
+                                progress="${this.progress[index]}"
                             >
                             </custom-card>`;
                     } else {
