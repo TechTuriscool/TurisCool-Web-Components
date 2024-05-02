@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>custom-buttont</title>
+    <script type="module" src="./customToast/customToast.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/gh/JoseAntonioSeguraGomez/webComponentsTuriscool-@v1.1.3/index.js"></script>
+    <link rel="stylesheet" href="./customToast/customToast.css">
+    <link rel="stylesheet" href="./customCard/styleCard.css">
+    <link rel="stylesheet" href="./customCarousel/styleCarousel.css">
+    <link rel="stylesheet" href="./customToast/styleToast.css">
+    <link rel="stylesheet" href="./customUserScore/styleUserScore.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #222;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        }
+
+        h1 {
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .userProgress {
+            margin-bottom: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tu itinerario</h1>
+    <custom-toast color="red" text="Hola"></custom-toast>
+    <custom-user-score user-id="65e21c42dd3275c7e10d3130"></custom-user-score>
+
+    <custom-carousel data='{
+        "images": [
+            "https://turiscool.com/wp-content/uploads/2022/11/female-housekeeping-opening-window-curtains-e1669291725384-768x384.jpg",
+            "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg",
+            "https://www.riazorhotel.com/wp-content/uploads/2023/10/Suite-hotel-Riazor2807-1-1620x1080.webp",
+            "https://cdn.britannica.com/96/115096-050-5AFDAF5D/Bellagio-Hotel-Casino-Las-Vegas.jpg",
+            "https://turiscool.com/wp-content/uploads/2022/11/female-housekeeping-opening-window-curtains-e1669291725384-768x384.jpg",
+            "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg",
+            "https://www.riazorhotel.com/wp-content/uploads/2023/10/Suite-hotel-Riazor2807-1-1620x1080.webp",
+            "https://cdn.britannica.com/96/115096-050-5AFDAF5D/Bellagio-Hotel-Casino-Las-Vegas.jpg",
+            "https://www.riazorhotel.com/wp-content/uploads/2023/10/Suite-hotel-Riazor2807-1-1620x1080.webp",
+            "https://cdn.britannica.com/96/115096-050-5AFDAF5D/Bellagio-Hotel-Casino-Las-Vegas.jpg"
+        ],
+        "titles": [
+            "Housekeeping pro",
+            "Cocina",
+            "Jardinería",
+            "Limpieza de cristales",
+            "Curso de cocina italiana",
+            "Diseño de interiores",
+            "Programación básica",
+            "Marketing digital",
+            "Fotografía profesional",
+            "Inglés avanzado"
+        ],
+        "descriptions": [
+            "Aprende técnicas de limpieza y organización para hogares y establecimientos comerciales.",
+            "Descubre los secretos de la cocina internacional y aprende a preparar platos deliciosos.",
+            "Conviértete en un experto en el cuidado y mantenimiento de jardines y áreas verdes.",
+            "Domina las técnicas para dejar los cristales limpios y relucientes en cualquier superficie.",
+            "Explora la rica tradición culinaria italiana y aprende a cocinar tus platos favoritos.",
+            "Descubre cómo crear espacios funcionales y estéticamente atractivos en interiores.",
+            "Aprende los conceptos básicos de la programación y desarrolla tus propias aplicaciones.",
+            "Domina las estrategias de marketing en línea y haz crecer tu negocio en internet.",
+            "Captura momentos inolvidables y crea imágenes impactantes con técnicas de fotografía profesional.",
+            "Perfecciona tus habilidades en el idioma inglés y alcanza un nivel avanzado de fluidez."
+        ],
+        "navigations": [
+            "https://academy.turiscool.com/course/networking-estrategico",
+            "https://academy.turiscool.com/course/cocteleria-profundidad-ginebra",
+            "https://academy.turiscool.com/course/barista-profesional",
+            "https://academy.turiscool.com/course/gestion-cuentas-resultados-departamental/",
+            "https://academy.turiscool.com/course/gobernanta-ejecutiva-dia-a-dia",
+            "https://academy.turiscool.com/course/networking-estrategico",
+            "https://academy.turiscool.com/course/cocteleria-profundidad-ginebra",
+            "https://academy.turiscool.com/course/barista-profesional",
+            "https://academy.turiscool.com/course/gestion-cuentas-resultados-departamental/",
+            "https://academy.turiscool.com/course/gobernanta-ejecutiva-dia-a-dia"
+        ]
+    }'></custom-carousel>
+    <custom-button color="red" background-color="white" text="ir a google"
+        navigate="https://www.google.es/"></custom-button>
+    <custom-button color="white" background-color="black" text="ir a turiscool"
+        navigate="https://turiscool.com/"></custom-button>
+    <custom-card title="Housekeeping pro" description="curso blablablabla"
+        image="https://turiscool.com/wp-content/uploads/2022/11/female-housekeeping-opening-window-curtains-e1669291725384-768x384.jpg"
+        navigation="https://www.google.es/">
+    </custom-card>
+    <custom-card title="Pepe el Chocolatero" description="No deberias poder leer todo esto" image="https://pbs.twimg.com/media/EX0RZeDWAAAzFIK.jpg" navigation="https://www.google.es/" ></custom-card>
+    <custom-input cursor="pointer" textType="password" place="Soy el fondo" data="Acepto todo" />
+
+</body>
+
+</html>
