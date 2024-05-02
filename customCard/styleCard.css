@@ -94,7 +94,7 @@
   background: #05BFAD;
   border-radius: 3px;
   position: relative;
-  animation: fillBars 2.5s 1;
+  animation: fillBars 4s 1;
 }
 
 .skill-percentage::before{
