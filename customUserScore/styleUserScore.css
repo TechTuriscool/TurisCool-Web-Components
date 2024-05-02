@@ -1,0 +1,63 @@
+.userProgress {
+  width: 60vw;
+  height: 100%;
+  background-color: #f3f3f3;
+  border: 2px solid #f3f3f3;
+}
+
+.userProgress h2 {
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.userProgress svg {
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+
+
+.progress {
+  width: 100%;
+  height: 100%;
+  background-color: #04BFAD;
+  display: flex;
+  flex-direction: row;
+}
+
+.progress div {
+    width: 33%;
+    padding: 20px;
+    padding-top: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #f3f3f3;
+}
+
+@media screen and (max-width: 700px) {
+  .progress {
+    flex-direction: column;
+    width: 100%;
+
+  }
+
+  .progress div {
+    width: 100%;
+    padding: 0;
+    padding-bottom: 20px;
+    flex-direction: column;
+  }
+
+  .userProgress {
+    width: 100%;
+    flex-direction: column;
+  }
+}

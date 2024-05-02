@@ -1,0 +1,49 @@
+.custom-carousel {
+    width: 90vw;
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    padding: 10px;
+    margin-bottom: 100px;
+    background-color: white;
+    border: solid 2px #05BFAD;
+    border-radius: 10px
+}
+
+.custom-carousel img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.custom-carousel img:hover {
+    transform: scale(1.1);
+}
+
+::-webkit-scrollbar {
+    cursor: pointer;
+}
+
+.custom-carousel::-webkit-scrollbar {
+    height: 40px;
+
+}
+
+.custom-carousel::-webkit-scrollbar-thumb {
+    background: #05BFAD;
+    background-clip: content-box;
+    border-radius: 30px;
+    border: solid 15px transparent;
+}
+
+.unlocked {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.locked {
+    pointer-events: none;
+    opacity: 0.6;
+}
