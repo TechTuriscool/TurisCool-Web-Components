@@ -89,7 +89,6 @@ attributeChangedCallback(attribute, oldValue, newValue) {
           this.redirect = data.redirect;
           
     this.render();
-    this.functionStart();
         }
 }
 
@@ -205,7 +204,6 @@ fetchAlumn() {
 
 fetchProgress() {
   let fetchPromises = [];
-
   this.delay(1000).then(() => {
     for (let i = 0; i < this.usersByTag.length; i++) {
       fetchPromises.push(
@@ -226,6 +224,7 @@ fetchProgress() {
 
     Promise.allSettled(fetchPromises)
       .then(() => {
+        console.log(this.filteredUsers);
         this.filterProgress();
       });
   });
@@ -235,7 +234,7 @@ fetchProgress() {
 /////////////////////////// FUNCIONES DE FILTRADO DE DATOS ///////////////////////////
 searchUser() {
   this.users.filter(user => {
-    if (this.user.tags.includes(this.tag)) {
+    if (user.tags.includes(this.tag)) {
       this.usersByTag.push(user);
     }
   });
@@ -249,7 +248,7 @@ showTop10() {
     for (let j = 0; j < this.filteredUsers[i].data.length; j++) {
       totalScore += this.filteredUsers[i].data[j].average_score_rate;
     }
-    let averageScore = this.totalScore / this.filteredUsers[i].data.length;
+    let averageScore = totalScore / this.filteredUsers[i].data.length;
     averageScore = Math.trunc(averageScore * 10);
     topUsers.push({ name: this.filteredUsers[i].name, total: averageScore })
   }
@@ -282,11 +281,11 @@ courseInfo() {
   };
 
   let coursesTotal = 0;
-  for (let i = 0; i < filteredUsers.length; i++) {
-    coursesData.totalNPS += filteredUsers[i].nps;
-    coursesTotal += filteredUsers[i].data.length;
+  for (let i = 0; i < this.filteredUsers.length; i++) {
+    coursesData.totalNPS += this.filteredUsers[i].nps;
+    coursesTotal += this.filteredUsers[i].data.length;
 
-    filteredUsers[i].data.forEach(course => {
+    this.filteredUsers[i].data.forEach(course => {
       let lessonComplete = true;
 
       if (course.progress_rate === 100) {
@@ -303,7 +302,7 @@ courseInfo() {
 
   coursesData.averageScore = coursesData.averageScore / coursesTotal;
   coursesData.averageScore = Math.round((coursesData.averageScore / coursesData.countCurses) * 100);
-  coursesData.totalNPS = coursesData.totalNPS / filteredUsers.length;
+  coursesData.totalNPS = coursesData.totalNPS / this.filteredUsers.length;
   return coursesData;
 }
 
@@ -313,35 +312,35 @@ filterCourses() {
   let arrayCoursesAbandoned = [];
   let arrayCoursesPopular = [];
 
-  for (let i = 0; i < filteredUsers.length; i++) {
-    if (filteredUsers[i].lastLogin > lastUserConected.time) {
-      lastUserConected.name = filteredUsers[i].name;
-      lastUserConected.time = filteredUsers[i].lastLogin;
+  for (let i = 0; i < this.filteredUsers.length; i++) {
+    if (this.filteredUsers[i].lastLogin > this.lastUserConected.time) {
+      this.lastUserConected.name = this.filteredUsers[i].name;
+      this.lastUserConected.time = this.filteredUsers[i].lastLogin;
     }
-    if (filteredUsers[i].lastLogin === 0 || filteredUsers[i].lastLogin === null) {
+    if (this.filteredUsers[i].lastLogin === 0 || this.filteredUsers[i].lastLogin === null) {
     } else {
-      if (filteredUsers[i].lastLogin < userConected.time) {
-        userConected.name = filteredUsers[i].name;
-        userConected.time = filteredUsers[i].lastLogin;
+      if (this.filteredUsers[i].lastLogin < this.userConected.time) {
+        this.userConected.name = this.filteredUsers[i].name;
+        this.userConected.time = this.filteredUsers[i].lastLogin;
       }
     }
 
-    for (let j = 0; j < filteredUsers[i].data.length; j++) {
-      let course = filteredUsers[i].data[j];
+    for (let j = 0; j < this.filteredUsers[i].data.length; j++) {
+      let course = this.filteredUsers[i].data[j];
       let courseExists = false;
-      for (let k = 0; k < courses.length; k++) {
-        if (courses[k].name === course.course_id) {
+      for (let k = 0; k < this.courses.length; k++) {
+        if (this.courses[k].name === course.course_id) {
           courseExists = true;
-          courses[k].time += course.time_on_course;
-          courses[k].progress_rate += course.progress_rate;
-          courses[k].average += course.average_score_rate;
-          courses[k].count += 1;
+          this.courses[k].time += course.time_on_course;
+          this.courses[k].progress_rate += course.progress_rate;
+          this.courses[k].average += course.average_score_rate;
+          this.courses[k].count += 1;
           break;
         }
       }
 
       if (!courseExists) {
-        courses.push({
+        this.courses.push({
           name: course.course_id,
           time: course.time_on_course,
           progress_rate: course.progress_rate,
@@ -364,39 +363,39 @@ filterCourses() {
   }
 
 
-  for (let i = 0; i < courses.length; i++) {
-    if (courses[i].time > longCourse.time) {
-      longCourse.name = courses[i].name;
-      longCourse.time = courses[i].time;
+  for (let i = 0; i < this.courses.length; i++) {
+    if (this.courses[i].time > this.longCourse.time) {
+      this.longCourse.name = this.courses[i].name;
+      this.longCourse.time = this.courses[i].time;
     }
 
-    if (courses[i].time < shortCourse.time) {
-      shortCourse.name = courses[i].name;
-      shortCourse.time = courses[i].time;
+    if (this.courses[i].time < this.shortCourse.time) {
+      this.shortCourse.name = this.courses[i].name;
+      this.shortCourse.time = this.courses[i].time;
     }
 
-    if (courses[i].average / courses[i].count < lowerCourseAverage.average) {
-      lowerCourseAverage.name = courses[i].name;
-      lowerCourseAverage.average = courses[i].average / courses[i].count;
+    if (this.courses[i].average / this.courses[i].count < this.lowerCourseAverage.average) {
+      this.lowerCourseAverage.name = this.courses[i].name;
+      this.lowerCourseAverage.average = this.courses[i].average / this.courses[i].count;
     }
 
-    if (courses[i].average / courses[i].count > highestCourseAverage.average) {
-      highestCourseAverage.name = courses[i].name;
-      highestCourseAverage.average = courses[i].average / courses[i].count;
+    if (this.courses[i].average / this.courses[i].count > this.highestCourseAverage.average) {
+      this.highestCourseAverage.name = this.courses[i].name;
+      this.highestCourseAverage.average = this.courses[i].average / this.courses[i].count;
     }
   }
 
   for (let i = 0; i < arrayCoursesAbandoned.length; i++) {
-    if (arrayCoursesAbandoned[i].count > courseAbandoned.count) {
-      courseAbandoned.name = arrayCoursesAbandoned[i].name;
-      courseAbandoned.count = arrayCoursesAbandoned[i].count;
+    if (arrayCoursesAbandoned[i].count > this.courseAbandoned.count) {
+      this.courseAbandoned.name = arrayCoursesAbandoned[i].name;
+      this.courseAbandoned.count = arrayCoursesAbandoned[i].count;
     }
   }
 
   for (let i = 0; i < arrayCoursesPopular.length; i++) {
-    if (arrayCoursesPopular[i].count > coursePopular.count) {
-      coursePopular.name = arrayCoursesPopular[i].name;
-      coursePopular.count = arrayCoursesPopular[i].count;
+    if (this.arrayCoursesPopular[i].count > this.coursePopular.count) {
+      this.coursePopular.name = arrayCoursesPopular[i].name;
+      this.coursePopular.count = arrayCoursesPopular[i].count;
     }
   }
 
@@ -483,72 +482,66 @@ showProgressInfo() {
   let lastCourse = document.getElementById('course-card-last-course');
   let endCourse = document.getElementById('course-card-end-courses');
 
-  courses.innerHTML = `${progressFiltered.totalCourses}`;
-  startCourses.innerHTML = `${progressFiltered.coursesStarted}`;
-  progressRate.value = `${progressFiltered.completedCourses}`;
-  average.innerHTML = `${progressFiltered.averageTotalCourseProgress}`;
-  time.innerHTML = `${progressFiltered.totalTime} minutos`;
+  courses.innerHTML = `${this.progressFiltered.totalCourses}`;
+  startCourses.innerHTML = `${this.progressFiltered.coursesStarted}`;
+  progressRate.value = `${this.progressFiltered.completedCourses}`;
+  average.innerHTML = `${this.progressFiltered.averageTotalCourseProgress}`;
+  time.innerHTML = `${this.progressFiltered.totalTime} minutos`;
 
-  progressFiltered.lastCourse = progressFiltered.lastCourse.replace(/-/g, " ");
+  this.progressFiltered.lastCourse = this.progressFiltered.lastCourse.replace(/-/g, " ");
 
-  lastCourse.innerHTML = `${progressFiltered.lastCourse} 
-    <br><strong>Fecha:</strong> ${showDate(progressFiltered.dateLastCourse)}`;
-  endCourse.innerHTML = `${progressFiltered.completedCourses}`;
+  lastCourse.innerHTML = `${this.progressFiltered.lastCourse} 
+    <br><strong>Fecha:</strong> ${this.showDate(this.progressFiltered.dateLastCourse)}`;
+  endCourse.innerHTML = `${this.progressFiltered.completedCourses}`;
 }
 
-showTopUsers() {
+async showTopUsers() {
   let datosRecibidos = false;
-  let topUsers = showTop10();
+  let topUsers = await this.showTop10();
+  console.log(topUsers);
   let row = document.getElementById("top10Users");
-  let spiner = document.querySelector(".loader");
+  let spinner = document.querySelector(".loader");
 
-  if(topUsers.lengh >= 10){
+  if (topUsers.length >= 10) {
     for (let i = 0; i < 10; i++) {
-        datosRecibidos = true;
-        if (datosRecibidos) {
-        spiner.style.display = 'none';
-        }
-        let fila = document.createElement("tr");
-        fila.innerHTML = `<td>${i + 1}</td><td>${topUsers[i].name}</td><td>${topUsers[i].total}</td>`;
-        row.appendChild(fila);
+      datosRecibidos = true;
+      if (datosRecibidos) {
+        spinner.style.display = 'none';
+      }
+      let fila = document.createElement("tr");
+      fila.innerHTML = `<td>${i + 1}</td><td>${topUsers[i].name}</td><td>${topUsers[i].total}</td>`;
+      row.appendChild(fila);
     }
   } else {
     for (let i = 0; i < topUsers.length; i++) {
-        datosRecibidos = true;
-        if (datosRecibidos) {
-        spiner.style.display = 'none';
-        }
-        let fila = document.createElement("tr");
-        fila.innerHTML = `<td>${i + 1}</td><td>${topUsers[i].name}</td><td>${topUsers[i].total}</td>`;
-        row.appendChild(fila);
+      datosRecibidos = true;
+      if (datosRecibidos) {
+        spinner.style.display = 'none';
+      }
+      let fila = document.createElement("tr");
+      fila.innerHTML = `<td>${i + 1}</td><td>${topUsers[i].name}</td><td>${topUsers[i].total}</td>`;
+      row.appendChild(fila);
     }
   }
-
-
 }
 
-showTopUsers3() {
-  let datosRecibidos = false;
-  let spiner = document.querySelectorAll('.spinerVisible');
-  let topUsers = showTop10();
+async showTopUsers3() {
+  let topUsers = await this.showTop10();
 
   for (let i = 0; i < 3; i++) {
     let position = document.getElementById(`position${i + 1}`);
-    datosRecibidos = true;
-    if (datosRecibidos) {
-      spiner[i].style.display = 'none';
-    }
-    position.innerHTML = `${i + 1}º - ${topUsers[i].name}`;
+    position.innerText = `${i + 1}º - ${topUsers[i].name}`;
+    
   }
 }
 
-showUserMe() {
+async showUserMe() {
   let datosRecibidos = false;
   let actualPosition = document.getElementById("actualPosition");
-  let position = showTop10();
+  let position = await this.showTop10();
 
   for (let i = 0; i < position.length; i++) {
-    if (position[i].name === user.name) {
+    if (position[i].name === this.user.name) {
       datosRecibidos = true;
       actualPosition.innerHTML = `${i + 1}`;
       if (datosRecibidos) {
@@ -556,12 +549,11 @@ showUserMe() {
       }
     }
   }
-
 }
 
-showCourseInfo() {
+async showCourseInfo() {
   let datosRecibidos = false;
-  let coursesData = courseInfo();
+  let coursesData = await this.courseInfo();
   if (coursesData) {
     datosRecibidos = true;
   }
@@ -569,11 +561,8 @@ showCourseInfo() {
   courses.innerHTML = `${coursesData.totalCoursesCompleted} cursos`;
 
   let time = document.getElementById("statistic-hours");
-
   coursesData.totalTime = Math.round(coursesData.totalTime / 60);
   time.innerHTML = `${coursesData.totalTime} horas`;
-
-  let average = document.getElementById("statistic-average");
 
   let lessons = document.getElementById("statistic-units");
   lessons.innerHTML = `${coursesData.totalUnits} lecciones`;
@@ -585,14 +574,14 @@ showCourseInfo() {
   }
 }
 
-showInfoUser() {
+async showInfoUser() {
   let datosRecibidos = false;
   datosRecibidos = true;
   let userName = document.getElementById('user-info-name');
   let userDate = document.getElementById('user-info-date');
 
-  userName.innerHTML = `${lastUserConected.name}`;
-  userDate.innerHTML = `${showDate(lastUserConected.time)}`;
+  userName.innerHTML = `${this.lastUserConected.name}`;
+  userDate.innerHTML = `${this.showDate(this.lastUserConected.time)}`;
 
   if (datosRecibidos) {
     userName.classList.remove('loading');
@@ -600,7 +589,7 @@ showInfoUser() {
   }
 }
 
-filterProgressUser() {
+async filterProgressUser() {
   this.progressFiltered.totalCourses = this.progress.length;
   let totalProgress = 0;
   let totalTime = 0;
@@ -613,13 +602,12 @@ filterProgressUser() {
       totalProgress += this.progress[i].average_score_rate / 10;
     }
 
-    totalTime += progress[i].time_on_course;
+    totalTime += this.progress[i].time_on_course;
     if (this.progressFiltered.dateLastCourse < this.progress[i].completed_at) {
       this.progressFiltered.dateLastCourse = this.progress[i].completed_at;
       this.progressFiltered.lastCourse = this.progress[i].course_id;
       this.progressFiltered.lastSection = this.progress[i].progress_per_section_unit[0].section_id;
     }
-
   }
 
   this.progressFiltered.courseProgress = this.progressFiltered.completedCourses / this.progressFiltered.totalCourses * 100;
@@ -630,7 +618,7 @@ filterProgressUser() {
 
   this.progressFiltered.totalTime = totalTime;
 
-  showProgressInfo();
+  this.showProgressInfo();
 }
 
 showUndefined(text) {
@@ -640,7 +628,8 @@ showUndefined(text) {
     return text;
   }
 }
-delay(ms) {
+
+async delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -868,6 +857,7 @@ render() {
       
         <button class="btn" onclick="redirectButton()">VOLVER</button>
     `;
+    this.functionStart();
 
 };
 
