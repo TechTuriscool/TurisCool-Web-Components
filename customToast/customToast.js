@@ -1,4 +1,4 @@
-class customToast extends HTMLElement {
+export class customToast extends HTMLElement {
     constructor() {
         super();
         this.text;

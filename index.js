@@ -3,4 +3,4 @@ import {customCard} from './customCard/customCard.js';
 import {customCarousel} from './customCarousel/customCarousel.js';
 import { customUserScore } from './customUserScore/customUserScore.js';
 import {customToast} from './customToast/customToast.js';
-import {CustomLeaderBoard} from './customLeaderBoard/customLeaderBoard.js';
+import {customLeaderBoard} from './customLeaderBoard/customLeaderBoard.js';

@@ -1,4 +1,4 @@
-export class CustomLeaderBoard extends HTMLElement {
+export class customLeaderBoard extends HTMLElement {
     constructor() {
         super();
         this.url = "https://academy.turiscool.com/admin/api/"
@@ -531,7 +531,7 @@ async showTopUsers3() {
   for (let i = 0; i < 3; i++) {
     let position = document.getElementById(`position${i + 1}`);
     position.innerText = `${i + 1}º - ${topUsers[i].name}`;
-    
+
   }
 }
 
@@ -864,4 +864,4 @@ render() {
 
 }
 
-window.customElements.define('custom-leaderboard', CustomLeaderBoard);
+window.customElements.define('custom-leaderboard', customLeaderBoard);
