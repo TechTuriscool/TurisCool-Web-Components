@@ -83,7 +83,6 @@ static get observedAttributes() {
 }
 
 attributeChangedCallback(attribute, oldValue, newValue) {
-  if (!this.dataLoaded) {
     if (attribute === "data" && oldValue !== newValue) {
             const data = JSON.parse(newValue);
             this.actualuser = data.actualuser;
@@ -93,18 +92,21 @@ attributeChangedCallback(attribute, oldValue, newValue) {
       this.render();
           }
         this.dataLoaded = true;
-        console.log("dataLoaded", this.dataLoaded);
-    }
+
 }
 
 /////////////////////////// INICIO ///////////////////////////
 
 // LLAMADA A LAS FUNCIONES UNA VEZ CARGADA LA PAGINA //
 functionStart() {
+  if (!this.dataLoaded) {
   //userId = document.getElementById('el_1712750078537_354').textContent;
   this.fetchMetaProgress();
 
   this.fetchUser();
+  console.log("dataLoaded", this.dataLoaded);
+
+}
 }
 
 
