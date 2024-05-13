@@ -93,6 +93,7 @@ attributeChangedCallback(attribute, oldValue, newValue) {
       this.render();
           }
         this.dataLoaded = true;
+        console.log("dataLoaded", this.dataLoaded);
     }
 }
 
