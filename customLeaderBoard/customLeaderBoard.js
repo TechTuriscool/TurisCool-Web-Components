@@ -507,7 +507,6 @@ async showTopUsers() {
   let datosRecibidos = false;
   let topUsers = await this.showTop10();
   console.log(topUsers);
-  let row = document.getElementById("top10Users");
   let spinner = document.querySelector(".loader");
 
   if (topUsers.length >= 10) {
@@ -516,9 +515,10 @@ async showTopUsers() {
       if (datosRecibidos) {
         spinner.style.display = 'none';
       }
-      let fila = document.createElement("tr");
-      fila.innerHTML = `<td>${i + 1}</td><td>${topUsers[i].name}</td><td>${topUsers[i].total}</td>`;
-      row.appendChild(fila);
+      let nombre = document.getElementById(`name${i + 1}`);
+      let scoreUser = document.getElementById(`scoreUser${i + 1}`);
+      nombre.innerHTML = `${topUsers[i].name}`;
+      scoreUser.innerHTML = `${topUsers[i].total}`;
     }
   } else {
     for (let i = 0; i < topUsers.length; i++) {
@@ -526,9 +526,10 @@ async showTopUsers() {
       if (datosRecibidos) {
         spinner.style.display = 'none';
       }
-      let fila = document.createElement("tr");
-      fila.innerHTML = `<td>${i + 1}</td><td>${topUsers[i].name}</td><td>${topUsers[i].total}</td>`;
-      row.appendChild(fila);
+      let nombre = document.getElementById(`name${i + 1}`);
+      let scoreUser = document.getElementById(`scoreUser${i + 1}`);
+      nombre.innerHTML = `${topUsers[i].name}`;
+      scoreUser.innerHTML = `${topUsers[i].total}`;
     }
   }
 }
@@ -800,6 +801,16 @@ render() {
                   </tr>
                 </thead>
                 <tbody id="top10Users">
+                  <tr><td>1</td><td class='nombre1'>undefined</td><td class='scoreUser1'>0</td></tr>
+                  <tr><td>2</td><td class='nombre2'>undefined</td><td class='scoreUser2'>0</td></tr>
+                  <tr><td>3</td><td class='nombre3'>undefined</td><td class='scoreUser3'>0</td></tr>
+                  <tr><td>4</td><td class='nombre4'>undefined</td><td class='scoreUser4'>0</td></tr>
+                  <tr><td>5</td><td class='nombre5'>undefined</td><td class='scoreUser5'>0</td></tr>
+                  <tr><td>6</td><td class='nombre6'>undefined</td><td class='scoreUser6'>0</td></tr>
+                  <tr><td>7</td><td class='nombre7'>undefined</td><td class='scoreUser7'>0</td></tr>
+                  <tr><td>8</td><td class='nombre8'>undefined</td><td class='scoreUser8'>0</td></tr>
+                  <tr><td>9</td><td class='nombre9'>undefined</td><td class='scoreUser9'>0</td></tr>
+                  <tr><td>10</td><td class='nombre10'>undefined</td><td class='scoreUser10'>0</td></tr>
                 </tbody>
               </table>
               <div class="loader"></div>
