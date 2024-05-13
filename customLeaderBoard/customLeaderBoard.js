@@ -91,7 +91,6 @@ attributeChangedCallback(attribute, oldValue, newValue) {
             
       this.render();
           }
-        this.dataLoaded = true;
 
 }
 
@@ -105,6 +104,7 @@ functionStart() {
 
   this.fetchUser();
   console.log("dataLoaded", this.dataLoaded);
+  this.dataLoaded = true;
 
 }
 }
