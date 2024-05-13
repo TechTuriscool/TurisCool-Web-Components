@@ -513,10 +513,12 @@ async showTopUsers() {
       }
       let nombre = document.getElementById(`nombre${i + 1}`);
       let scoreUser = document.getElementById(`scoreUser${i + 1}`);
+      let fila = document.getElementById(`fila${i + 1}`);
 
       if (!topUsers[i].name || !topUsers[i].total || topUsers[i].name === "undefined" || topUsers[i].total === "undefined"  ) {
         break;
       } else {
+        fila.style.removeProperty('display');
         nombre.innerHTML = `${topUsers[i].name}`;
         scoreUser.innerHTML = `${topUsers[i].total}`;
       }
