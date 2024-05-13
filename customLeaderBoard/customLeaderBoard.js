@@ -531,7 +531,7 @@ async showTopUsers3() {
 
   for (let i = 0; i < 3; i++) {
     let position = document.getElementById(`position${i + 1}`);
-    position.innerText = `${i + 1}º - ${topUsers[i].name}`;
+    position.innerHTML = `${i + 1}º - ${topUsers[i].name}`;
 
   }
 }
@@ -821,7 +821,7 @@ render() {
                     </g>
                   </svg>
                   <div class="ganador" style="display: flex; justify-content: center; align-items: center;">
-                    <h1 id="ganador"></h1><img class="spinerVisible" style="height: 20px;" src="spiner.gif" alt="">
+                    <h1 id="position1"></h1><img class="spinerVisible" style="height: 20px;" src="spiner.gif" alt="">
                   </div>
                   <div class="segundo" style="display: flex; justify-content: center; align-items: center;">
                     <h1 id="position2"></h1><img class="spinerVisible" style="height: 20px;" src="spiner.gif" alt="">
