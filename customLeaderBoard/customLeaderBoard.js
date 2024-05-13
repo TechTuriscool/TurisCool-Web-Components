@@ -103,7 +103,6 @@ functionStart() {
   this.fetchMetaProgress();
 
   this.fetchUser();
-  console.log("dataLoaded", this.dataLoaded);
   this.dataLoaded = true;
 
 }
@@ -113,7 +112,6 @@ functionStart() {
 
 /////////////////////////// FUNCIONES DE RECOPILACION DE DATOS ///////////////////////////
 fetchMetaProgress() {
-    console.log(this.url);
   fetch(`${this.url}/v2/users/${this.actualuser}/progress?items_per_page=200`, this.requestOptions)
     .then(response => response.json())
     .then(metaData => {
@@ -231,7 +229,6 @@ fetchProgress() {
 
     Promise.allSettled(fetchPromises)
       .then(() => {
-        console.log(this.filteredUsers);
         this.filterProgress();
       });
   });
@@ -506,7 +503,6 @@ showProgressInfo() {
 async showTopUsers() {
   let datosRecibidos = false;
   let topUsers = await this.showTop10();
-  console.log(topUsers);
   let spinner = document.querySelector(".loader");
 
   if (topUsers.length >= 10) {
@@ -800,17 +796,17 @@ render() {
                     <th>Puntuación</th>
                   </tr>
                 </thead>
-                <tbody id="top10Users">
-                  <tr><td>1</td><td class='nombre1'>undefined</td><td class='scoreUser1'>0</td></tr>
-                  <tr><td>2</td><td class='nombre2'>undefined</td><td class='scoreUser2'>0</td></tr>
-                  <tr><td>3</td><td class='nombre3'>undefined</td><td class='scoreUser3'>0</td></tr>
-                  <tr><td>4</td><td class='nombre4'>undefined</td><td class='scoreUser4'>0</td></tr>
-                  <tr><td>5</td><td class='nombre5'>undefined</td><td class='scoreUser5'>0</td></tr>
-                  <tr><td>6</td><td class='nombre6'>undefined</td><td class='scoreUser6'>0</td></tr>
-                  <tr><td>7</td><td class='nombre7'>undefined</td><td class='scoreUser7'>0</td></tr>
-                  <tr><td>8</td><td class='nombre8'>undefined</td><td class='scoreUser8'>0</td></tr>
-                  <tr><td>9</td><td class='nombre9'>undefined</td><td class='scoreUser9'>0</td></tr>
-                  <tr><td>10</td><td class='nombre10'>undefined</td><td class='scoreUser10'>0</td></tr>
+                  <tbody id="top10Users">
+                    <tr><td>1</td><td id='nombre1'>undefined</td><td id='scoreUser1'>0</td></tr>
+                    <tr><td>2</td><td id='nombre2'>undefined</td><td id='scoreUser2'>0</td></tr>
+                    <tr><td>3</td><td id='nombre3'>undefined</td><td id='scoreUser3'>0</td></tr>
+                    <tr><td>4</td><td id='nombre4'>undefined</td><td id='scoreUser4'>0</td></tr>
+                    <tr><td>5</td><td id='nombre5'>undefined</td><td id='scoreUser5'>0</td></tr>
+                    <tr><td>6</td><td id='nombre6'>undefined</td><td id='scoreUser6'>0</td></tr>
+                    <tr><td>7</td><td id='nombre7'>undefined</td><td id='scoreUser7'>0</td></tr>
+                    <tr><td>8</td><td id='nombre8'>undefined</td><td id='scoreUser8'>0</td></tr>
+                    <tr><td>9</td><td id='nombre9'>undefined</td><td id='scoreUser9'>0</td></tr>
+                    <tr><td>10</td><td id='nombre10'>undefined</td><td id='scoreUser10'>0</td></tr>
                 </tbody>
               </table>
               <div class="loader"></div>
