@@ -513,19 +513,13 @@ async showTopUsers() {
       }
       let nombre = document.getElementById(`nombre${i + 1}`);
       let scoreUser = document.getElementById(`scoreUser${i + 1}`);
-      nombre.innerHTML = `${topUsers[i].name}`;
-      scoreUser.innerHTML = `${topUsers[i].total}`;
-    }
-  } else {
-    for (let i = 0; i < topUsers.length; i++) {
-      datosRecibidos = true;
-      if (datosRecibidos) {
-        spinner.style.display = 'none';
+
+      if (!topUsers[i].name || !topUsers[i].total || topUsers[i].name === "undefined" || topUsers[i].total === "undefined"  ) {
+        break;
+      } else {
+        nombre.innerHTML = `${topUsers[i].name}`;
+        scoreUser.innerHTML = `${topUsers[i].total}`;
       }
-      let nombre = document.getElementById(`name${i + 1}`);
-      let scoreUser = document.getElementById(`scoreUser${i + 1}`);
-      nombre.innerHTML = `${topUsers[i].name}`;
-      scoreUser.innerHTML = `${topUsers[i].total}`;
     }
   }
 }
@@ -797,16 +791,16 @@ render() {
                   </tr>
                 </thead>
                   <tbody id="top10Users">
-                    <tr><td>1</td><td id='nombre1'>undefined</td><td id='scoreUser1'>0</td></tr>
-                    <tr><td>2</td><td id='nombre2'>undefined</td><td id='scoreUser2'>0</td></tr>
-                    <tr><td>3</td><td id='nombre3'>undefined</td><td id='scoreUser3'>0</td></tr>
-                    <tr><td>4</td><td id='nombre4'>undefined</td><td id='scoreUser4'>0</td></tr>
-                    <tr><td>5</td><td id='nombre5'>undefined</td><td id='scoreUser5'>0</td></tr>
-                    <tr><td>6</td><td id='nombre6'>undefined</td><td id='scoreUser6'>0</td></tr>
-                    <tr><td>7</td><td id='nombre7'>undefined</td><td id='scoreUser7'>0</td></tr>
-                    <tr><td>8</td><td id='nombre8'>undefined</td><td id='scoreUser8'>0</td></tr>
-                    <tr><td>9</td><td id='nombre9'>undefined</td><td id='scoreUser9'>0</td></tr>
-                    <tr><td>10</td><td id='nombre10'>undefined</td><td id='scoreUser10'>0</td></tr>
+                    <tr id='fila1' style='display: none'><td>1</td><td id='nombre1'>undefined</td><td id='scoreUser1'>0</td></tr>
+                    <tr id='fila2' style='display: none'><td>2</td><td id='nombre2'>undefined</td><td id='scoreUser2'>0</td></tr>
+                    <tr id='fila3' style='display: none'><td>3</td><td id='nombre3'>undefined</td><td id='scoreUser3'>0</td></tr>
+                    <tr id='fila4' style='display: none'><td>4</td><td id='nombre4'>undefined</td><td id='scoreUser4'>0</td></tr>
+                    <tr id='fila5' style='display: none'><td>5</td><td id='nombre5'>undefined</td><td id='scoreUser5'>0</td></tr>
+                    <tr id='fila6' style='display: none'><td>6</td><td id='nombre6'>undefined</td><td id='scoreUser6'>0</td></tr>
+                    <tr id='fila7' style='display: none'><td>7</td><td id='nombre7'>undefined</td><td id='scoreUser7'>0</td></tr>
+                    <tr id='fila8' style='display: none'><td>8</td><td id='nombre8'>undefined</td><td id='scoreUser8'>0</td></tr>
+                    <tr id='fila9' style='display: none'><td>9</td><td id='nombre9'>undefined</td><td id='scoreUser9'>0</td></tr>
+                    <tr id='fila10' style='display: none'><td>10</td><td id='nombre10'>undefined</td><td id='scoreUser10'>0</td></tr>
                 </tbody>
               </table>
               <div class="loader"></div>
@@ -825,7 +819,7 @@ render() {
                     </g>
                   </svg>
                   <div class="ganador" style="display: flex; justify-content: center; align-items: center;">
-                    <h1 id="position1"></h1><img class="spinerVisible" style="height: 20px;" src="spiner.gif" alt="">
+                    <h1 id="ganador"></h1><img class="spinerVisible" style="height: 20px;" src="spiner.gif" alt="">
                   </div>
                   <div class="segundo" style="display: flex; justify-content: center; align-items: center;">
                     <h1 id="position2"></h1><img class="spinerVisible" style="height: 20px;" src="spiner.gif" alt="">
