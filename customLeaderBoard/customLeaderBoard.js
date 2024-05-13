@@ -70,6 +70,7 @@ export class customLeaderBoard extends HTMLElement {
         name: "",
         time: 1000000000,
         };
+        this.dataLoaded = false;
     }
 
 
@@ -82,14 +83,17 @@ static get observedAttributes() {
 }
 
 attributeChangedCallback(attribute, oldValue, newValue) {
-  if (attribute === "data" && oldValue !== newValue) {
-          const data = JSON.parse(newValue);
-          this.actualuser = data.actualuser;
-          this.tag = data.tag;
-          this.redirect = data.redirect;
-          
-    this.render();
-        }
+  if (!this.dataLoaded) {
+    if (attribute === "data" && oldValue !== newValue) {
+            const data = JSON.parse(newValue);
+            this.actualuser = data.actualuser;
+            this.tag = data.tag;
+            this.redirect = data.redirect;
+            
+      this.render();
+          }
+        this.dataLoaded = true;
+    }
 }
 
 /////////////////////////// INICIO ///////////////////////////
