@@ -515,7 +515,7 @@ async showTopUsers() {
       if (datosRecibidos) {
         spinner.style.display = 'none';
       }
-      let nombre = document.getElementById(`name${i + 1}`);
+      let nombre = document.getElementById(`nombre${i + 1}`);
       let scoreUser = document.getElementById(`scoreUser${i + 1}`);
       nombre.innerHTML = `${topUsers[i].name}`;
       scoreUser.innerHTML = `${topUsers[i].total}`;
