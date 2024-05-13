@@ -3,7 +3,14 @@ body{
     --color-claro: color-mix(in srgb, var(--color), 25%, white);
     --color-oscuro: color-mix(in srgb, var(--color), 25%, black);
     }
-    
+
 Button{
 Background-color:var(--color)
+}
+
+.custom-h1 {
+    color: blue;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: underline;
 }
