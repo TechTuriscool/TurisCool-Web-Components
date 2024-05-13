@@ -1,0 +1,9 @@
+body{
+    --color: Red;
+    --color-claro: color-mix(in srgb, var(--color), 25%, white);
+    --color-oscuro: color-mix(in srgb, var(--color), 25%, black);
+    }
+    
+Button{
+Background-color:var(--color)
+}
