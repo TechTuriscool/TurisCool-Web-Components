@@ -222,6 +222,10 @@
     width: 600px;
   }
 
+  .leaderboard-container {
+    background-color: #EFEFEF;
+  }
+
   .container {
     display: flex;
     flex-direction: column;
@@ -230,36 +234,30 @@
     width: 80vw;
     max-width: 1200px;
     margin-bottom: 20px;
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.3);
-    -webkit-box-shadow: 0px 0px 70px 0px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0px 0px 70px 0px rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 0px 70px 0px rgba(0, 0, 0, 0.5);
+    border: 2px solid #25b09b;
   }
 
   .profile-card {
     width: 32%;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    border-radius: 6px;
-    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
     text-align: left;
   }
 
   .course-card {
     width: 65%;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    border-radius: 6px;
-    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
   }
 
   .table-section {
     width: 68%;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    border-radius: 6px;
+    border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.3);
+    border: 2px solid #25b09b;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -292,11 +290,11 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     margin-bottom: 20px;
     width: 100%;
-    border-radius: 6px;
+    border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.3);
+    border: 2px solid #25b09b;
   }
 
   .ganador {
@@ -339,10 +337,10 @@
     align-items: center;
     width: 100%;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     text-align: center;
-    border-radius: 6px;
+    border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.3);
+    border: 2px solid #25b09b;
   }
 
   .statistic {
@@ -360,9 +358,9 @@
   .list-item {
     margin-bottom: 8px;
     padding: 6px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    border-radius: 6px;
+    border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.3);
+    border: 2px solid #25b09b;
   }
 
   .list-item h2,
@@ -388,9 +386,9 @@
   .user-info {
     width: 48.5%;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    border-radius: 6px;
+    border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.3);
+    border: 2px solid #25b09b;
   }
 
   .user-info h2 {
@@ -398,13 +396,15 @@
   }
 
   .container.par {
-    background-color: #39478A;
-    color: #ffffff;
+    background-color: #e9e9e9;
+    color: #000000;
+    box-shadow: 5px 5px 5px hsla(171, 65%, 42%, 0.30);
   }
 
   .container.impar {
-    background-color: #C3D379;
+    background-color: #e9e9e9;
     color: #000000;
+    box-shadow: 5px 5px 5px hsla(171, 65%, 42%, 0.30);
   }
 
   .progreso {
