@@ -449,33 +449,39 @@ showUserInfo() {
 let username = document.getElementById('username');
 let email = document.getElementById('email');
 
-username.innerHTML = `<svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#FFFFFF"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>profile [#1336]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-380.000000, -2159.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M334,2011 C337.785,2011 340.958,2013.214 341.784,2017 L326.216,2017 C327.042,2013.214 330.215,2011 334,2011 M330,2005 C330,2002.794 331.794,2001 334,2001 C336.206,2001 338,2002.794 338,2005 C338,2007.206 336.206,2009 334,2009 C331.794,2009 330,2007.206 330,2005 M337.758,2009.673 C339.124,2008.574 340,2006.89 340,2005 C340,2001.686 337.314,1999 334,1999 C330.686,1999 328,2001.686 328,2005 C328,2006.89 328.876,2008.574 330.242,2009.673 C326.583,2011.048 324,2014.445 324,2019 L344,2019 C344,2014.445 341.417,2011.048 337.758,2009.673" id="profile-[#1336]"> </path> </g> </g> </g> </g></svg>
-    ${this.showUndefined(this.user.name)}`;
-email.innerHTML = `<svg height="200px" width="200px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#000000;} </style> <g> <path class="st0" d="M510.746,110.361c-2.128-10.754-6.926-20.918-13.926-29.463c-1.422-1.794-2.909-3.39-4.535-5.009 c-12.454-12.52-29.778-19.701-47.531-19.701H67.244c-17.951,0-34.834,7-47.539,19.708c-1.608,1.604-3.099,3.216-4.575,5.067 c-6.97,8.509-11.747,18.659-13.824,29.428C0.438,114.62,0,119.002,0,123.435v265.137c0,9.224,1.874,18.206,5.589,26.745 c3.215,7.583,8.093,14.772,14.112,20.788c1.516,1.509,3.022,2.901,4.63,4.258c12.034,9.966,27.272,15.45,42.913,15.45h377.51 c15.742,0,30.965-5.505,42.967-15.56c1.604-1.298,3.091-2.661,4.578-4.148c5.818-5.812,10.442-12.49,13.766-19.854l0.438-1.05 c3.646-8.377,5.497-17.33,5.497-26.628V123.435C512,119.06,511.578,114.649,510.746,110.361z M34.823,99.104 c0.951-1.392,2.165-2.821,3.714-4.382c7.689-7.685,17.886-11.914,28.706-11.914h377.51c10.915,0,21.115,4.236,28.719,11.929 c1.313,1.327,2.567,2.8,3.661,4.272l2.887,3.88l-201.5,175.616c-6.212,5.446-14.21,8.443-22.523,8.443 c-8.231,0-16.222-2.99-22.508-8.436L32.19,102.939L34.823,99.104z M26.755,390.913c-0.109-0.722-0.134-1.524-0.134-2.341V128.925 l156.37,136.411L28.199,400.297L26.755,390.913z M464.899,423.84c-6.052,3.492-13.022,5.344-20.145,5.344H67.244 c-7.127,0-14.094-1.852-20.142-5.344l-6.328-3.668l159.936-139.379l17.528,15.246c10.514,9.128,23.922,14.16,37.761,14.16 c13.89,0,27.32-5.032,37.827-14.16l17.521-15.253L471.228,420.18L464.899,423.84z M485.372,388.572 c0,0.803-0.015,1.597-0.116,2.304l-1.386,9.472L329.012,265.409l156.36-136.418V388.572z"></path> </g> </g></svg>
-     ${this.showUndefined(this.user.email)}`;
+function capitalizeInitials(name) {
+  if (!name) return ''; 
+  return name.split(' ')
+             .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+             .join(' ');
+}
+
+function showUndefined(name) {
+  return name ? capitalizeInitials(name) : 'undefined';
+}
+
+username.innerHTML = `${showUndefined(this.user.name)}`;
+email.innerHTML = `${this.showUndefined(this.user.email)}`;
 
 }
 
 showProgressInfo() {
 let courses = document.getElementById('course-card-courses');
-let startCourses = document.getElementById('course-card-start-courses');
 let progressRate = document.getElementById('course-card-progress');
 let average = document.getElementById('course-card-average');
 let time = document.getElementById('course-card-time');
 let lastCourse = document.getElementById('course-card-last-course');
 let endCourse = document.getElementById('course-card-end-courses');
 
-courses.innerHTML = `${this.progressFiltered.totalCourses}`;
-startCourses.innerHTML = `${this.progressFiltered.coursesStarted}`;
+courses.innerHTML = `<strong>Cursos totales:</strong> ${this.progressFiltered.totalCourses}`;
 progressRate.value = `${this.progressFiltered.completedCourses}`;
-average.innerHTML = `${this.progressFiltered.averageTotalCourseProgress}`;
-time.innerHTML = `${this.progressFiltered.totalTime} minutos`;
+average.innerHTML = `<strong>Nota media:</strong> ${this.progressFiltered.averageTotalCourseProgress}`;
+time.innerHTML = `<strong>Tiempo total estudiado:</strong> ${this.progressFiltered.totalTime} minutos`;
 
 this.progressFiltered.lastCourse = this.progressFiltered.lastCourse.replace(/-/g, " ");
 
-lastCourse.innerHTML = `${this.progressFiltered.lastCourse} 
-  <br><strong>Fecha:</strong> ${this.showDate(this.progressFiltered.dateLastCourse)}`;
-endCourse.innerHTML = `${this.progressFiltered.completedCourses}`;
+lastCourse.innerHTML = `${this.progressFiltered.lastCourse} (${this.showDate(this.progressFiltered.dateLastCourse)})`;
+endCourse.innerHTML = `<strong>Cursos finalizados:</strong> ${this.progressFiltered.completedCourses}`;
 }
 
 async showTopUsers() {
@@ -614,41 +620,31 @@ return new Promise(resolve => setTimeout(resolve, ms));
 
 render() {
 
-  this.innerHTML = `    
+  this.innerHTML = /*html*/`    
       <div class="container impar">
         <div class="container-content">
           <div class="profile-card">
-            <h2>Perfil de usuario</h2>
-            <p id="username"></p>
-            <p id="email"><strong>Email:</strong> juan@example.com</p>
-          </div>
-          <div class="course-card">
-            <div class="title-course">Resumen de mis cursos</div>
-            <div class="containerCourse">
+            <h2>Datos Generales</h2>
+            <div class='primeraFila'>
+              <div><svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#FFFFFF"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>profile [#1336]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-380.000000, -2159.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M334,2011 C337.785,2011 340.958,2013.214 341.784,2017 L326.216,2017 C327.042,2013.214 330.215,2011 334,2011 M330,2005 C330,2002.794 331.794,2001 334,2001 C336.206,2001 338,2002.794 338,2005 C338,2007.206 336.206,2009 334,2009 C331.794,2009 330,2007.206 330,2005 M337.758,2009.673 C339.124,2008.574 340,2006.89 340,2005 C340,2001.686 337.314,1999 334,1999 C330.686,1999 328,2001.686 328,2005 C328,2006.89 328.876,2008.574 330.242,2009.673 C326.583,2011.048 324,2014.445 324,2019 L344,2019 C344,2014.445 341.417,2011.048 337.758,2009.673" id="profile-[#1336]"> </path> </g> </g> </g> </g></svg><p id="username"></p></div>
+              <div><svg height="200px" width="200px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#000000;} </style> <g> <path class="st0" d="M510.746,110.361c-2.128-10.754-6.926-20.918-13.926-29.463c-1.422-1.794-2.909-3.39-4.535-5.009 c-12.454-12.52-29.778-19.701-47.531-19.701H67.244c-17.951,0-34.834,7-47.539,19.708c-1.608,1.604-3.099,3.216-4.575,5.067 c-6.97,8.509-11.747,18.659-13.824,29.428C0.438,114.62,0,119.002,0,123.435v265.137c0,9.224,1.874,18.206,5.589,26.745 c3.215,7.583,8.093,14.772,14.112,20.788c1.516,1.509,3.022,2.901,4.63,4.258c12.034,9.966,27.272,15.45,42.913,15.45h377.51 c15.742,0,30.965-5.505,42.967-15.56c1.604-1.298,3.091-2.661,4.578-4.148c5.818-5.812,10.442-12.49,13.766-19.854l0.438-1.05 c3.646-8.377,5.497-17.33,5.497-26.628V123.435C512,119.06,511.578,114.649,510.746,110.361z M34.823,99.104 c0.951-1.392,2.165-2.821,3.714-4.382c7.689-7.685,17.886-11.914,28.706-11.914h377.51c10.915,0,21.115,4.236,28.719,11.929 c1.313,1.327,2.567,2.8,3.661,4.272l2.887,3.88l-201.5,175.616c-6.212,5.446-14.21,8.443-22.523,8.443 c-8.231,0-16.222-2.99-22.508-8.436L32.19,102.939L34.823,99.104z M26.755,390.913c-0.109-0.722-0.134-1.524-0.134-2.341V128.925 l156.37,136.411L28.199,400.297L26.755,390.913z M464.899,423.84c-6.052,3.492-13.022,5.344-20.145,5.344H67.244 c-7.127,0-14.094-1.852-20.142-5.344l-6.328-3.668l159.936-139.379l17.528,15.246c10.514,9.128,23.922,14.16,37.761,14.16 c13.89,0,27.32-5.032,37.827-14.16l17.521-15.253L471.228,420.18L464.899,423.84z M485.372,388.572 c0,0.803-0.015,1.597-0.116,2.304l-1.386,9.472L329.012,265.409l156.36-136.418V388.572z"></path> </g> </g></svg><p id="email"><strong>Email:</strong></p></div>
+              <div class="h3">
+                <strong>Último curso terminado:</strong>
+                  <p id="course-card-last-course"></p> 
+              </div>
+            </div>
+            <div class="segundaFila">
               <div class="h3"><svg fill="#000000" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                  <g id="SVGRepo_iconCarrier">
-                    <path
-                      d="M1750.21 0v1468.235h-225.882v338.824h169.412V1920H451.387c-82.447 0-161.506-36.141-214.701-99.388-43.934-51.953-67.652-116.33-67.652-182.965V282.353C169.034 126.494 295.528 0 451.387 0H1750.21Zm-338.823 1468.235H463.81c-89.223 0-166.136 59.86-179.576 140.047-1.242 9.036-2.259 18.07-2.259 27.106v2.26c0 40.658 13.553 77.928 40.659 109.552 32.753 38.4 79.059 59.859 128.753 59.859h960v-112.941H409.599v-112.942h1001.788v-112.94Zm225.882-1355.294H451.387c-92.725 0-169.412 75.67-169.412 169.412v1132.8c50.824-37.27 113.958-59.859 181.835-59.859h1173.46V112.941ZM1354.882 903.53v112.942H564.294V903.529h790.588Zm56.47-564.705v451.764H507.825V338.824h903.529Zm-112.94 112.94H620.765v225.883h677.647V451.765Z"
-                      fill-rule="evenodd"></path>
-                  </g>
-                </svg> Cursos totales:</div class="h3">
-              <p id="course-card-courses"></p>
-            </div>
-            <div class="containerCourse">
-              <div class="h3"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#000000">
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                  <g id="SVGRepo_iconCarrier">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M4.25 3l1.166-.624 8 5.333v1.248l-8 5.334-1.166-.624V3zm1.5 1.401v7.864l5.898-3.932L5.75 4.401z">
-                    </path>
-                  </g>
-                </svg> Cursos empezados:</div class="h3">
-              <p id="course-card-start-courses"></p>
-            </div>
-            <div class="containerCourse">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M1750.21 0v1468.235h-225.882v338.824h169.412V1920H451.387c-82.447 0-161.506-36.141-214.701-99.388-43.934-51.953-67.652-116.33-67.652-182.965V282.353C169.034 126.494 295.528 0 451.387 0H1750.21Zm-338.823 1468.235H463.81c-89.223 0-166.136 59.86-179.576 140.047-1.242 9.036-2.259 18.07-2.259 27.106v2.26c0 40.658 13.553 77.928 40.659 109.552 32.753 38.4 79.059 59.859 128.753 59.859h960v-112.941H409.599v-112.942h1001.788v-112.94Zm225.882-1355.294H451.387c-92.725 0-169.412 75.67-169.412 169.412v1132.8c50.824-37.27 113.958-59.859 181.835-59.859h1173.46V112.941ZM1354.882 903.53v112.942H564.294V903.529h790.588Zm56.47-564.705v451.764H507.825V338.824h903.529Zm-112.94 112.94H620.765v225.883h677.647V451.765Z"
+                    fill-rule="evenodd"></path>
+                </g>
+                </svg> 
+                <p id="course-card-courses"></p>
+              </div>
               <div class="h3"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                   <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -664,21 +660,9 @@ render() {
                       </g>
                     </g>
                   </g>
-                </svg> Cursos finalizados:</div class="h3">
+                </svg> 
               <p id="course-card-end-courses"></p>
-            </div>
-            <div class="progreso">
-              <div class="h3"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                  <g id="SVGRepo_iconCarrier">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M5 5C2.23858 5 0 7.23858 0 10V14C0 16.7614 2.23858 19 5 19H19C21.7614 19 24 16.7614 24 14V10C24 7.23858 21.7614 5 19 5H5ZM2 10C2 8.34315 3.34315 7 5 7H19C20.6569 7 22 8.34315 22 10V14C22 15.6569 20.6569 17 19 17H5C3.34315 17 2 15.6569 2 14V10ZM6 9C4.89543 9 4 9.89543 4 11V13C4 14.1046 4.89543 15 6 15C7.10457 15 8 14.1046 8 13V11C8 9.89543 7.10457 9 6 9Z"
-                      fill="#000000"></path>
-                  </g>
-                </svg></div class="h3">Progreso:<progress id="course-card-progress" value="25" min="0" max="100"></progress>
-            </div>
-            <div class="containerCourse">
+              </div>
               <div class="h3"><svg fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                   <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -687,10 +671,9 @@ render() {
                       d="M22,7H16.333V4a1,1,0,0,0-1-1H8.667a1,1,0,0,0-1,1v7H2a1,1,0,0,0-1,1v8a1,1,0,0,0,1,1H22a1,1,0,0,0,1-1V8A1,1,0,0,0,22,7ZM7.667,19H3V13H7.667Zm6.666,0H9.667V5h4.666ZM21,19H16.333V9H21Z">
                     </path>
                   </g>
-                </svg> Nota media:</div class="h3">
+                </svg> 
               <p id="course-card-average"></p>
-            </div>
-            <div class="containerCourse">
+              </div>
               <div class="h3"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                   <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -702,35 +685,17 @@ render() {
                       d="M12 5C11.4477 5 11 5.44771 11 6V12.4667C11 12.4667 11 12.7274 11.1267 12.9235C11.2115 13.0898 11.3437 13.2343 11.5174 13.3346L16.1372 16.0019C16.6155 16.278 17.2271 16.1141 17.5032 15.6358C17.7793 15.1575 17.6155 14.5459 17.1372 14.2698L13 11.8812V6C13 5.44772 12.5523 5 12 5Z"
                       fill="#0F0F0F"></path>
                   </g>
-                </svg> Tiempo total estudiado: </div class="h3">
+                </svg> 
               <p id="course-card-time"></p>
             </div>
-            <div class="containerCourse">
-              <div class="h3"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                  <g id="SVGRepo_iconCarrier">
-                    <path
-                      d="M23 12C23 12.3545 22.9832 12.7051 22.9504 13.051C22.3838 12.4841 21.7204 12.014 20.9871 11.6675C20.8122 6.85477 16.8555 3.00683 12 3.00683C7.03321 3.00683 3.00683 7.03321 3.00683 12C3.00683 16.8555 6.85477 20.8122 11.6675 20.9871C12.014 21.7204 12.4841 22.3838 13.051 22.9504C12.7051 22.9832 12.3545 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12Z"
-                      fill="#0F0F0F"></path>
-                    <path
-                      d="M13 11.8812L13.8426 12.3677C13.2847 12.7802 12.7902 13.2737 12.3766 13.8307L11.5174 13.3346C11.3437 13.2343 11.2115 13.0898 11.1267 12.9235C11 12.7274 11 12.4667 11 12.4667V6C11 5.44771 11.4477 5 12 5C12.5523 5 13 5.44772 13 6V11.8812Z"
-                      fill="#0F0F0F"></path>
-                    <path
-                      d="M15.2929 17.7071C15.6834 17.3166 16.3166 17.3166 16.7071 17.7071L17.3482 18.3482L19.2473 16.4491C19.6379 16.0586 20.271 16.0586 20.6615 16.4491C21.0521 16.8397 21.0521 17.4728 20.6615 17.8634L18.1213 20.4036C18.0349 20.49 17.9367 20.5573 17.8318 20.6054C17.4488 20.8294 16.9487 20.7772 16.6203 20.4487L15.2929 19.1213C14.9024 18.7308 14.9024 18.0976 15.2929 17.7071Z"
-                      fill="#0F0F0F"></path>
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M18 24C21.3137 24 24 21.3137 24 18C24 14.6863 21.3137 12 18 12C14.6863 12 12 14.6863 12 18C12 21.3137 14.6863 24 18 24ZM18 22.0181C15.7809 22.0181 13.9819 20.2191 13.9819 18C13.9819 15.7809 15.7809 13.9819 18 13.9819C20.2191 13.9819 22.0181 15.7809 22.0181 18C22.0181 20.2191 20.2191 22.0181 18 22.0181Z"
-                      fill="#0F0F0F"></path>
-                  </g>
-                </svg> Último curso terminado: </div class="h3">
-              <p id="course-card-last-course"></p>
             </div>
-          </div>
+      </div>
+      </div>
+        <div class="h3 terceraFila" > <strong>Progreso:</strong>
+          <progress id="course-card-progress" value="25" min="0" max="100"></progress>
         </div>
       </div>
-      </div>
-    
+
       <div class="container par">
         <div class="container-content">
           <div class="user-info">
