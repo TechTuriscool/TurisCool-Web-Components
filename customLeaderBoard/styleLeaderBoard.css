@@ -109,8 +109,8 @@
   }
 
   .profile-card svg {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     margin-bottom: 10px;
   }
 
@@ -396,8 +396,8 @@
     width: 48.5%;
     padding: 20px;
     border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border: 2px solid #FFFFFF;
+    background-color: #ffffff;
+    border: 2px solid #F0F1F5;
     transition: 0.3s;
   }
 
@@ -512,6 +512,34 @@
     overflow: hidden;
   }
 
+  .profile-card .primeraFila div h4 {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    color: rgba(41, 41, 41, 0.695);
+
+  }
+
+  .profile-card .primeraFila div svg {
+    margin-top: 0px;
+  }
+
+  .profile-card .segundaFila p {
+    margin: 0px;
+    padding: 0px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #05BFAD;
+    margin-bottom: -15px;
+  }
+
+  .profile-card .segundaFila strong {
+    font-size: 16px;
+    margin-top: 0px;
+  }
+
+
+
   .statistic:hover, .position-circle:hover, .podio:hover, .user-info:hover ,.profile-card .primeraFila div:hover, .profile-card .segundaFila div:hover, .profile-card .terceraFila:hover{
     scale: 1.05;
     box-shadow: 0 5px 5px #00000015;
@@ -572,8 +600,8 @@
   .terceraFila progress::-webkit-progress-value { background: #05BFAD; }
   .terceraFila progress::-webkit-progress-bar { background: #F5F6FB; }
 
-  .primeraFila div strong {
-    padding-top: 10px;
+  .se div strong {
+    padding-top: 20px;
   }
 
   @media screen and (max-width: 768px) {
