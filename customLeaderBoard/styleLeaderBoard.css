@@ -26,6 +26,12 @@
 
   }
 
+  .container-content p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
   .container-content2 {
     width: 100%;
     display: flex;
@@ -481,8 +487,8 @@
 
   .profile-card .primeraFila, .profile-card .segundaFila, .profile-card .terceraFila{
     display: flex;
-    margin: space-between;
     position: relative;
+    justify-content: space-evenly;
   }
 
   .profile-card .primeraFila div, .profile-card .segundaFila div {
@@ -490,11 +496,10 @@
     flex-direction: column;
     width: 20%;
     height: 200px;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    margin: auto;
     border-radius: 20px;
-    margin-top: 20px;
+    margin: 1.5% 0;
     background-color: #FFFFFF;
     border: 2px solid #F0F1F5;
     position: relative;
@@ -526,7 +531,7 @@
   
 
   .profile-card .primeraFila .h3 {
-    width: 45%;
+    width: 44%;
   }
 
   .profile-card .primeraFila .h3 svg {
