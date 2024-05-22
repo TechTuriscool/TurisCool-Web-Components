@@ -254,11 +254,12 @@
     width: 68%;
     padding: 20px;
     border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: #ffffff;
     border: 2px solid #F0F1F5;
     display: flex;
     align-items: center;
     flex-direction: column;
+    transition: 0.3s;
   }
 
   .table-section div {
@@ -291,8 +292,9 @@
     margin-bottom: 20px;
     width: 100%;
     border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: #ffffff;
     border: 2px solid #F0F1F5;
+    transition: 0.3s;
   }
 
   .ganador {
@@ -337,14 +339,17 @@
     padding: 20px;
     text-align: center;
     border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: #ffffff;
     border: 2px solid #F0F1F5;
+    transition: 0.3s;
   }
 
   .statistic {
     text-align: center;
     margin-bottom: 20px;
     width: 30%;
+    background-color: #ffffff;
+    transition: 0.3s;
   }
 
   #listado {
@@ -386,7 +391,8 @@
     padding: 20px;
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.3);
-    border: 2px solid #F0F1F5;
+    border: 2px solid #FFFFFF;
+    transition: 0.3s;
   }
 
   .user-info h2 {
@@ -501,8 +507,13 @@
     overflow: hidden;
   }
 
-  .profile-card .primeraFila div:hover, .profile-card .segundaFila div:hover, .profile-card .terceraFila:hover{
+  .statistic:hover, .position-circle:hover, .podio:hover, .user-info:hover ,.profile-card .primeraFila div:hover, .profile-card .segundaFila div:hover, .profile-card .terceraFila:hover{
     scale: 1.05;
+    box-shadow: 0 5px 5px #00000015;
+  }
+
+  .table-section:hover {
+    scale: 1.03;
     box-shadow: 0 5px 5px #00000015;
   }
 
