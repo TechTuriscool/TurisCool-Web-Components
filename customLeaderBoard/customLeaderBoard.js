@@ -645,7 +645,7 @@ render() {
                 </svg>
               </div>
               <div>
-                <strong>Último curso terminado:</strong>
+                <strong class="textoPosicion2">Último curso terminado:</strong>
                   <p id="course-card-last-course">...</p> 
               </div>              
             </div>

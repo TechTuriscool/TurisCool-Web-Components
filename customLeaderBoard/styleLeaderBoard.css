@@ -669,7 +669,13 @@
   .textoPosicion {
     margin-top: 30px;
     margin-bottom: 20px;
+    font-size: 13px;
   }
+
+  .textoPosicion2 {
+    font-size: 13px;
+    margin-top: 10px;
+  }	
 
   .actualPosition {
     position: absolute;
