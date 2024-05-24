@@ -624,14 +624,14 @@ render() {
       <div class="container impar">
         <div class="container-content">
           <div class="profile-card">
-            <h2>Información usuario:</h2>
+            <h2>Perfil:</h2>
             <div class='primeraFila'>
               <div>
               <svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#FFFFFF"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>profile [#1336]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-380.000000, -2159.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M334,2011 C337.785,2011 340.958,2013.214 341.784,2017 L326.216,2017 C327.042,2013.214 330.215,2011 334,2011 M330,2005 C330,2002.794 331.794,2001 334,2001 C336.206,2001 338,2002.794 338,2005 C338,2007.206 336.206,2009 334,2009 C331.794,2009 330,2007.206 330,2005 M337.758,2009.673 C339.124,2008.574 340,2006.89 340,2005 C340,2001.686 337.314,1999 334,1999 C330.686,1999 328,2001.686 328,2005 C328,2006.89 328.876,2008.574 330.242,2009.673 C326.583,2011.048 324,2014.445 324,2019 L344,2019 C344,2014.445 341.417,2011.048 337.758,2009.673" id="profile-[#1336]"> </path> </g> </g> </g> </g></svg><p id="username"></p></div>
               <div class="emailContainer"><svg height="200px" width="200px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#000000;} </style> <g> <path class="st0" d="M510.746,110.361c-2.128-10.754-6.926-20.918-13.926-29.463c-1.422-1.794-2.909-3.39-4.535-5.009 c-12.454-12.52-29.778-19.701-47.531-19.701H67.244c-17.951,0-34.834,7-47.539,19.708c-1.608,1.604-3.099,3.216-4.575,5.067 c-6.97,8.509-11.747,18.659-13.824,29.428C0.438,114.62,0,119.002,0,123.435v265.137c0,9.224,1.874,18.206,5.589,26.745 c3.215,7.583,8.093,14.772,14.112,20.788c1.516,1.509,3.022,2.901,4.63,4.258c12.034,9.966,27.272,15.45,42.913,15.45h377.51 c15.742,0,30.965-5.505,42.967-15.56c1.604-1.298,3.091-2.661,4.578-4.148c5.818-5.812,10.442-12.49,13.766-19.854l0.438-1.05 c3.646-8.377,5.497-17.33,5.497-26.628V123.435C512,119.06,511.578,114.649,510.746,110.361z M34.823,99.104 c0.951-1.392,2.165-2.821,3.714-4.382c7.689-7.685,17.886-11.914,28.706-11.914h377.51c10.915,0,21.115,4.236,28.719,11.929 c1.313,1.327,2.567,2.8,3.661,4.272l2.887,3.88l-201.5,175.616c-6.212,5.446-14.21,8.443-22.523,8.443 c-8.231,0-16.222-2.99-22.508-8.436L32.19,102.939L34.823,99.104z M26.755,390.913c-0.109-0.722-0.134-1.524-0.134-2.341V128.925 l156.37,136.411L28.199,400.297L26.755,390.913z M464.899,423.84c-6.052,3.492-13.022,5.344-20.145,5.344H67.244 c-7.127,0-14.094-1.852-20.142-5.344l-6.328-3.668l159.936-139.379l17.528,15.246c10.514,9.128,23.922,14.16,37.761,14.16 c13.89,0,27.32-5.032,37.827-14.16l17.521-15.253L471.228,420.18L464.899,423.84z M485.372,388.572 c0,0.803-0.015,1.597-0.116,2.304l-1.386,9.472L329.012,265.409l156.36-136.418V388.572z"></path></g></g></svg><p id="email"></p>
-              <button onclick="window.open('https://academy.turiscool.com/profile', '_blank')">Editar Perfil</button></div>
+              <button onclick="window.open('https://academy.turiscool.com/profile', '_blank')">EDITAR PERFIL</button></div>
               <div class="star">
-                <strong class="textoPosicion">Tu ranking</strong>
+                <strong class="textoPosicion">TU RANKING</strong>
                 <svg  viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                   <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -646,7 +646,7 @@ render() {
                 </svg>
               </div>
               <div>
-                <strong class="textoPosicion2">Último curso terminado:</strong>
+                <strong class="textoPosicion2">ÚLTIMO CURSO:</strong>
                   <p id="course-card-last-course">...</p> 
               </div>              
             </div>
@@ -661,7 +661,7 @@ render() {
                 </g>
                 </svg> 
                 <p id="course-card-courses"></p>
-                <strong>cursos totales</strong>
+                <strong>CURSOS TOTALES</strong>
               </div>
               <div class="h3"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -680,7 +680,7 @@ render() {
                   </g>
                 </svg> 
               <p id="course-card-end-courses"></p>
-              <strong>cursos finalizados</strong> 
+              <strong>CURSOS FINALIZADOS</strong> 
               </div>
               <div class="h3"><svg fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -692,7 +692,7 @@ render() {
                   </g>
                 </svg> 
               <p id="course-card-average"></p>
-              <strong>nota media</strong> 
+              <strong>NOTA MEDIA</strong> 
               </div>
               <div class="h3"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -707,7 +707,7 @@ render() {
                   </g>
                 </svg> 
               <p id="course-card-time"></p>
-              <strong>tiempo estudiado</strong> 
+              <strong>TIEMPO ESTUDIADO</strong> 
             </div>
             </div>
             <div class="h3 terceraFila" >
@@ -794,7 +794,7 @@ render() {
     
     
       <div class="container par statistics">
-        <h1 class="tituloTuEscuela">TOTAL DE TU ESCUELA</h1>
+        <h1 class="tituloTuEscuela">TU HOTEL</h1>
         <div class="container-content2">
           <div class="statistic">
     

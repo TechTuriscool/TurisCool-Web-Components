@@ -336,8 +336,7 @@
   .segundo h1,
   .tercero h1 {
     font-size: 18px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 5px;
   }
 
   .position-circle {
@@ -558,7 +557,7 @@
     font-size: 24px;
     margin-top: 0;
     font-weight: bold;
-    padding-left: 20px;
+    padding-left: 2vw;
   }
   
 
