@@ -475,7 +475,13 @@ let endCourse = document.getElementById('course-card-end-courses');
 
 courses.innerHTML = `${this.progressFiltered.totalCourses}`;
 progressRate.value = `${this.progressFiltered.completedCourses}`;
+
+// Si el tiempo supera los 60 minutos, se convierte en horas
+if (this.progressFiltered.totalTime > 60) {
+  time.innerHTML = `${Math.round(this.progressFiltered.totalTime / 60)}h`;
+} else {
 average.innerHTML = `${this.progressFiltered.averageTotalCourseProgress}`;
+}
 time.innerHTML = `${this.progressFiltered.totalTime}min`;
 
 this.progressFiltered.lastCourse = this.progressFiltered.lastCourse.replace(/-/g, " ");
@@ -627,10 +633,11 @@ render() {
             <h2>Perfil:</h2>
             <div class='primeraFila'>
               <div>
-              <svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#FFFFFF"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>profile [#1336]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-380.000000, -2159.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M334,2011 C337.785,2011 340.958,2013.214 341.784,2017 L326.216,2017 C327.042,2013.214 330.215,2011 334,2011 M330,2005 C330,2002.794 331.794,2001 334,2001 C336.206,2001 338,2002.794 338,2005 C338,2007.206 336.206,2009 334,2009 C331.794,2009 330,2007.206 330,2005 M337.758,2009.673 C339.124,2008.574 340,2006.89 340,2005 C340,2001.686 337.314,1999 334,1999 C330.686,1999 328,2001.686 328,2005 C328,2006.89 328.876,2008.574 330.242,2009.673 C326.583,2011.048 324,2014.445 324,2019 L344,2019 C344,2014.445 341.417,2011.048 337.758,2009.673" id="profile-[#1336]"> </path> </g> </g> </g> </g></svg><p id="username"></p></div>
-              <div class="emailContainer"><svg height="200px" width="200px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#000000;} </style> <g> <path class="st0" d="M510.746,110.361c-2.128-10.754-6.926-20.918-13.926-29.463c-1.422-1.794-2.909-3.39-4.535-5.009 c-12.454-12.52-29.778-19.701-47.531-19.701H67.244c-17.951,0-34.834,7-47.539,19.708c-1.608,1.604-3.099,3.216-4.575,5.067 c-6.97,8.509-11.747,18.659-13.824,29.428C0.438,114.62,0,119.002,0,123.435v265.137c0,9.224,1.874,18.206,5.589,26.745 c3.215,7.583,8.093,14.772,14.112,20.788c1.516,1.509,3.022,2.901,4.63,4.258c12.034,9.966,27.272,15.45,42.913,15.45h377.51 c15.742,0,30.965-5.505,42.967-15.56c1.604-1.298,3.091-2.661,4.578-4.148c5.818-5.812,10.442-12.49,13.766-19.854l0.438-1.05 c3.646-8.377,5.497-17.33,5.497-26.628V123.435C512,119.06,511.578,114.649,510.746,110.361z M34.823,99.104 c0.951-1.392,2.165-2.821,3.714-4.382c7.689-7.685,17.886-11.914,28.706-11.914h377.51c10.915,0,21.115,4.236,28.719,11.929 c1.313,1.327,2.567,2.8,3.661,4.272l2.887,3.88l-201.5,175.616c-6.212,5.446-14.21,8.443-22.523,8.443 c-8.231,0-16.222-2.99-22.508-8.436L32.19,102.939L34.823,99.104z M26.755,390.913c-0.109-0.722-0.134-1.524-0.134-2.341V128.925 l156.37,136.411L28.199,400.297L26.755,390.913z M464.899,423.84c-6.052,3.492-13.022,5.344-20.145,5.344H67.244 c-7.127,0-14.094-1.852-20.142-5.344l-6.328-3.668l159.936-139.379l17.528,15.246c10.514,9.128,23.922,14.16,37.761,14.16 c13.89,0,27.32-5.032,37.827-14.16l17.521-15.253L471.228,420.18L464.899,423.84z M485.372,388.572 c0,0.803-0.015,1.597-0.116,2.304l-1.386,9.472L329.012,265.409l156.36-136.418V388.572z"></path></g></g></svg><p id="email"></p>
-              <button onclick="window.open('https://academy.turiscool.com/profile', '_blank')">EDITAR PERFIL</button></div>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 21C4 17.4735 6.60771 14.5561 10 14.0709M16.4976 16.2119C15.7978 15.4328 14.6309 15.2232 13.7541 15.9367C12.8774 16.6501 12.7539 17.843 13.4425 18.6868C13.8312 19.1632 14.7548 19.9983 15.4854 20.6353C15.8319 20.9374 16.0051 21.0885 16.2147 21.1503C16.3934 21.203 16.6018 21.203 16.7805 21.1503C16.9901 21.0885 17.1633 20.9374 17.5098 20.6353C18.2404 19.9983 19.164 19.1632 19.5527 18.6868C20.2413 17.843 20.1329 16.6426 19.2411 15.9367C18.3492 15.2307 17.1974 15.4328 16.4976 16.2119ZM15 7C15 9.20914 13.2091 11 11 11C8.79086 11 7 9.20914 7 7C7 4.79086 8.79086 3 11 3C13.2091 3 15 4.79086 15 7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg><p id="username"></p></div>
+              <div class="editContainer">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 21C4 17.134 7.13401 14 11 14C11.3395 14 11.6734 14.0242 12 14.0709M15 7C15 9.20914 13.2091 11 11 11C8.79086 11 7 9.20914 7 7C7 4.79086 8.79086 3 11 3C13.2091 3 15 4.79086 15 7ZM12.5898 21L14.6148 20.595C14.7914 20.5597 14.8797 20.542 14.962 20.5097C15.0351 20.4811 15.1045 20.4439 15.1689 20.399C15.2414 20.3484 15.3051 20.2848 15.4324 20.1574L19.5898 16C20.1421 15.4477 20.1421 14.5523 19.5898 14C19.0376 13.4477 18.1421 13.4477 17.5898 14L13.4324 18.1574C13.3051 18.2848 13.2414 18.3484 13.1908 18.421C13.1459 18.4853 13.1088 18.5548 13.0801 18.6279C13.0478 18.7102 13.0302 18.7985 12.9948 18.975L12.5898 21Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>              <button onclick="window.open('https://academy.turiscool.com/profile', '_blank')">EDITAR PERFIL</button></div>
               <div class="star">
+              <div class="moreInfo"><svg data-message="Aquí se muestra la posición de tu ranking actual respecto a tus compañeros, si quieres subir tu posición deberás hacer más cursos!" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(180)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="7.25" r="1.25" fill="#000000"></circle> <rect x="11" y="10" width="2" height="8" fill="#000000"></rect> </g></svg></div>
                 <strong class="textoPosicion">TU RANKING</strong>
                 <svg  viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -711,7 +718,8 @@ render() {
             </div>
             </div>
             <div class="h3 terceraFila" >
-            <strong>Progreso:</strong> 
+            <div class="moreInfo"><svg  data-message="Aquí se muestra el progreso total de los cursos que has completado respecto al total que tienes disponible." viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="7.25" r="1.25" fill="#000000"></circle> <rect x="11" y="10" width="2" height="8" fill="#000000"></rect> </g></svg></div>
+            <strong>Progreso total de tus cursos:</strong> 
             <progress id="course-card-progress" value="25" min="0" max="100"></progress>
           </div>
       </div>
@@ -725,7 +733,8 @@ render() {
             <h4>Último usuario conectado</h4>
             <h2 id="user-info-name" class="loading">Cargando</h2>
           </div>
-          <div class="user-info">
+      </div>
+      <div class="user-info">
             <h4>Última conexion</h4>
             <h2 id="user-info-date" class="loading">Cargando</h2>
           </div>
@@ -813,6 +822,14 @@ render() {
       </div>
     
       <button class="btn" onclick="redirectButton()">VOLVER</button>
+
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p id="modal-message">Aquí puedes poner tu mensaje personalizado</p>
+        </div>
+      </div>
+
   `;
   this.functionStart();
 
@@ -820,5 +837,30 @@ render() {
 
 
 }
+
+// DOCUMENT ADDEVENTLISTENER
+document.addEventListener('DOMContentLoaded', (event) => {
+  const modal = document.getElementById('myModal');
+  const span = document.getElementsByClassName('close')[0];
+  const modalMessage = document.getElementById('modal-message');
+  
+  document.querySelectorAll('svg').forEach(svg => {
+    svg.addEventListener('click', function () {
+      const message = this.getAttribute('data-message');
+      modalMessage.textContent = message;
+      modal.style.display = 'block';
+    });
+  });
+
+  span.onclick = function() {
+    modal.style.display = 'none';
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  }
+});
 
 window.customElements.define('custom-leaderboard', customLeaderBoard);
