@@ -733,13 +733,12 @@ render() {
             <h4>Último usuario conectado</h4>
             <h2 id="user-info-name" class="loading">Cargando</h2>
           </div>
-      </div>
-      <div class="user-info">
-            <h4>Última conexion</h4>
-            <h2 id="user-info-date" class="loading">Cargando</h2>
-          </div>
+          <div class="user-info">
+          <h4>Última conexion</h4>
+          <h2 id="user-info-date" class="loading">Cargando</h2>
         </div>
-    
+    </div>
+      </div>
       </div>
     
       <div class="container impar">
