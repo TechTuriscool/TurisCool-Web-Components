@@ -720,7 +720,7 @@ render() {
             </div>
             </div>
             <div class="h3 terceraFila" >
-            <div class="moreInfo"><svg  data-message="Aquí se muestra tu progreso total en los cursos completados en comparación con el total de cursos disponibles." viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="7.25" r="1.25" fill="#000000"></circle> <rect x="11" y="10" width="2" height="8" fill="#000000"></rect> </g></svg></div>
+            <div class="moreInfo"><svg  data-message="Aquí se muestra tu progreso total en los cursos completados en comparación con el total de cursos disponibles." viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(180)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="7.25" r="1.25" fill="#000000"></circle> <rect x="11" y="10" width="2" height="8" fill="#000000"></rect> </g></svg></div>
             <strong>Progreso total de tus cursos:</strong> 
             <progress id="course-card-progress" value="25" min="0" max="100"></progress>
           </div>
