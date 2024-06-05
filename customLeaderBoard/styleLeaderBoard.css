@@ -719,9 +719,9 @@
 }
 
 .moreInfo {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  position: relative;
+  top: 0px;
+  right: -97%;
   border-radius: 5px;
   width: 20px;
   height: 20px;

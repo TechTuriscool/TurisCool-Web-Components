@@ -480,9 +480,9 @@ progressRate.value = `${this.progressFiltered.completedCourses}`;
 if (this.progressFiltered.totalTime > 60) {
   time.innerHTML = `${Math.round(this.progressFiltered.totalTime / 60)}h`;
 } else {
-average.innerHTML = `${this.progressFiltered.averageTotalCourseProgress}`;
+  time.innerHTML = `${this.progressFiltered.totalTime}min`;
 }
-time.innerHTML = `${this.progressFiltered.totalTime}min`;
+average.innerHTML = `${this.progressFiltered.averageTotalCourseProgress}`;
 
 this.progressFiltered.lastCourse = this.progressFiltered.lastCourse.replace(/-/g, " ");
 
@@ -594,6 +594,7 @@ for (let i = 0; i < this.progress.length; i++) {
   }
 
   totalTime += this.progress[i].time_on_course;
+
   if (this.progressFiltered.dateLastCourse < this.progress[i].completed_at) {
     this.progressFiltered.dateLastCourse = this.progress[i].completed_at;
     this.progressFiltered.lastCourse = this.progress[i].course_id;
@@ -629,6 +630,7 @@ render() {
   this.innerHTML = /*html*/`    
       <div class="container impar">
         <div class="container-content">
+        
           <div class="profile-card">
             <h2>Perfil:</h2>
             <div class='primeraFila'>
@@ -742,7 +744,8 @@ render() {
       </div>
     
       <div class="container impar">
-    
+      <div class="moreInfo"><svg data-message="Completa más cursos para obtener una mayor puntuación y así subir de posición en el ranking. ¡Ánimo!" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(180)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="7.25" r="1.25" fill="#000000"></circle> <rect x="11" y="10" width="2" height="8" fill="#000000"></rect> </g></svg></div>
+
         <h1 class="tituloTuEscuela">Ranking</h1>
         <div class="container-content">
     
