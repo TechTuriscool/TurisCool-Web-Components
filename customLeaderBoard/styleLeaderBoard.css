@@ -759,6 +759,7 @@
   padding: 0px;
   margin: 0px;
   border: 0px;
+  box-shadow: none;
 }
 
 .profile-card .primeraFila .star .moreInfo svg{
