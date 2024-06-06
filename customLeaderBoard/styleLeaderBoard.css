@@ -647,7 +647,7 @@
 
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 600px) {
     .container {
       width: 95vw;
     }
@@ -661,6 +661,12 @@
     .list-item {
       width: 95%;
     }
+
+    .podio {
+      margin: auto;
+      width: 95%;
+    }
+  
   }
 
   .star svg {
