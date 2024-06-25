@@ -868,12 +868,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const modal = document.getElementById('myModal');
   const span = document.getElementsByClassName('close')[0];
   const modalMessage = document.getElementById('modal-message');
-  
-  document.querySelectorAll('svg').forEach(svg => {
+
+  document.querySelectorAll('svg[data-message]').forEach(svg => {
     svg.addEventListener('click', function () {
       const message = this.getAttribute('data-message');
-      modalMessage.textContent = message;
-      modal.style.display = 'block';
+      if (message) {
+        modalMessage.textContent = message;
+        modal.style.display = 'block';
+      }
     });
   });
 
@@ -887,5 +889,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   }
 });
+
 
 window.customElements.define('custom-leaderboard', customLeaderBoard);
