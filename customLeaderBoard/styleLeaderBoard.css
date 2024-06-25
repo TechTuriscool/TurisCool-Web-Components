@@ -826,7 +826,7 @@
 }
 
 #actualPosition {
-  POSITION: absolute;
-  top: 43%;
+  position: absolute;
+  top: 48%;
   font-size: x-large;
 }
