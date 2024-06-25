@@ -686,12 +686,6 @@
     height: 100px;
   }	
 
-  .textoPosicion {
-    margin-top: 30px;
-    margin-bottom: 20px;
-    font-size: 13px;
-  }
-
   .textoPosicion2 {
     font-size: 13px;
     margin-top: 10px;
@@ -829,4 +823,10 @@
   font-weight: bold;
   color: #05BFAD;
   margin-bottom: -15px;
+}
+
+#actualPosition {
+  POSITION: absolute;
+  top: 43%;
+  font-size: x-large;
 }
