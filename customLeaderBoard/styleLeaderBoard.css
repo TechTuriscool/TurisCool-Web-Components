@@ -306,7 +306,7 @@
 
   .ganador {
     width: 80%;
-    background-color: rgba(255, 225, 0, 0.801);
+    background-color: #006791;
     border: solid 2px white;
     text-align: center;
     margin-bottom: 30px;
@@ -316,7 +316,7 @@
 
   .segundo {
     width: 80%;
-    background-color: rgba(145, 145, 145, 0.39);
+    background-color: #04BFAD;
     border: solid 2px white;
     text-align: center;
     margin-bottom: 30px;
@@ -325,11 +325,15 @@
 
   .tercero {
     width: 80%;
-    background-color: #ee7903ac;
+    background-color: #F5F6FB;
     border: solid 2px white;
     text-align: center;
     margin-bottom: 30px;
     border-radius: 10px;
+  }
+
+  .ganador h1 {
+    color: #FFF;
   }
 
   .ganador h1,
@@ -808,4 +812,13 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+#course-card-courses {
+  margin: 0px;
+  padding: 0px;
+  font-size: 36px;
+  font-weight: bold;
+  color: #05BFAD;
+  margin-bottom: -15px;
 }

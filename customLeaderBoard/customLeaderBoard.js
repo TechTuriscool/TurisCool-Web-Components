@@ -27,6 +27,7 @@ export class customLeaderBoard extends HTMLElement {
       this.progress = [];
       this.progressFiltered = {
       totalCourses: 0,
+      totalUnits: 0,
       coursesStarted: 0,
       completedCourses: 0,
       courseProgress: 0,
@@ -300,7 +301,14 @@ for (let i = 0; i < this.filteredUsers.length; i++) {
       coursesData.averageScore += course.average_score_rate / 10;
       coursesData.countCurses += 1;
     }
-    coursesData.totalUnits += course.completed_units;
+
+    for (let j = 0; j < course.progress_per_section_unit.length; j++) {
+      for (let k = 0; k < course.progress_per_section_unit[j].units.length; k++) {
+        if (course.progress_per_section_unit[j].units[k].unit_status === 'completed') {
+          coursesData.totalUnits += course.completed_units;
+        }
+      }
+    }
   });
 }
 
@@ -472,6 +480,7 @@ let average = document.getElementById('course-card-average');
 let time = document.getElementById('course-card-time');
 let lastCourse = document.getElementById('course-card-last-course');
 let endCourse = document.getElementById('course-card-end-courses');
+let totalUnits = document.getElementById('course-card-units');
 
 courses.innerHTML = `${this.progressFiltered.totalCourses}`;
 progressRate.value = `${this.progressFiltered.completedCourses}`;
@@ -486,6 +495,7 @@ average.innerHTML = `${this.progressFiltered.averageTotalCourseProgress}`;
 
 this.progressFiltered.lastCourse = this.progressFiltered.lastCourse.replace(/-/g, " ");
 
+totalUnits.innerHTML = this.progressFiltered.totalUnits;
 lastCourse.innerHTML = `${this.progressFiltered.lastCourse} (${this.showDate(this.progressFiltered.dateLastCourse)})`;
 endCourse.innerHTML = `${this.progressFiltered.completedCourses}`;
 }
@@ -585,12 +595,23 @@ this.progressFiltered.totalCourses = this.progress.length;
 let totalProgress = 0;
 let totalTime = 0;
 
+console.log(this.progress)
+
 for (let i = 0; i < this.progress.length; i++) {
   if (this.progress[i].progress_rate > 0 && this.progress[i].progress_rate < 100) {
     this.progressFiltered.coursesStarted += 1;
   } else if (this.progress[i].progress_rate === 100) {
     this.progressFiltered.completedCourses += 1;
     totalProgress += this.progress[i].average_score_rate / 10;
+  }
+
+  // Calcular lecciones totales 
+  for (let j = 0; j < this.progress[i].progress_per_section_unit.length; j++) {
+    for (let k = 0; k < this.progress[i].progress_per_section_unit[j].units.length; k++) {
+      if (this.progress[i].progress_per_section_unit[j].units[k].unit_status === 'completed') {
+        this.progressFiltered.totalUnits += 1;
+      }
+    }
   }
 
   totalTime += this.progress[i].time_on_course;
@@ -635,9 +656,7 @@ render() {
             <h2>Perfil:</h2>
             <div class='primeraFila'>
               <div>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 21C4 17.4735 6.60771 14.5561 10 14.0709M16.4976 16.2119C15.7978 15.4328 14.6309 15.2232 13.7541 15.9367C12.8774 16.6501 12.7539 17.843 13.4425 18.6868C13.8312 19.1632 14.7548 19.9983 15.4854 20.6353C15.8319 20.9374 16.0051 21.0885 16.2147 21.1503C16.3934 21.203 16.6018 21.203 16.7805 21.1503C16.9901 21.0885 17.1633 20.9374 17.5098 20.6353C18.2404 19.9983 19.164 19.1632 19.5527 18.6868C20.2413 17.843 20.1329 16.6426 19.2411 15.9367C18.3492 15.2307 17.1974 15.4328 16.4976 16.2119ZM15 7C15 9.20914 13.2091 11 11 11C8.79086 11 7 9.20914 7 7C7 4.79086 8.79086 3 11 3C13.2091 3 15 4.79086 15 7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg><p id="username"></p></div>
-              <div class="editContainer">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 21C4 17.134 7.13401 14 11 14C11.3395 14 11.6734 14.0242 12 14.0709M15 7C15 9.20914 13.2091 11 11 11C8.79086 11 7 9.20914 7 7C7 4.79086 8.79086 3 11 3C13.2091 3 15 4.79086 15 7ZM12.5898 21L14.6148 20.595C14.7914 20.5597 14.8797 20.542 14.962 20.5097C15.0351 20.4811 15.1045 20.4439 15.1689 20.399C15.2414 20.3484 15.3051 20.2848 15.4324 20.1574L19.5898 16C20.1421 15.4477 20.1421 14.5523 19.5898 14C19.0376 13.4477 18.1421 13.4477 17.5898 14L13.4324 18.1574C13.3051 18.2848 13.2414 18.3484 13.1908 18.421C13.1459 18.4853 13.1088 18.5548 13.0801 18.6279C13.0478 18.7102 13.0302 18.7985 12.9948 18.975L12.5898 21Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>              <button onclick="window.open('https://academy.turiscool.com/profile', '_blank')">EDITAR PERFIL</button></div>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 21C4 17.4735 6.60771 14.5561 10 14.0709M16.4976 16.2119C15.7978 15.4328 14.6309 15.2232 13.7541 15.9367C12.8774 16.6501 12.7539 17.843 13.4425 18.6868C13.8312 19.1632 14.7548 19.9983 15.4854 20.6353C15.8319 20.9374 16.0051 21.0885 16.2147 21.1503C16.3934 21.203 16.6018 21.203 16.7805 21.1503C16.9901 21.0885 17.1633 20.9374 17.5098 20.6353C18.2404 19.9983 19.164 19.1632 19.5527 18.6868C20.2413 17.843 20.1329 16.6426 19.2411 15.9367C18.3492 15.2307 17.1974 15.4328 16.4976 16.2119ZM15 7C15 9.20914 13.2091 11 11 11C8.79086 11 7 9.20914 7 7C7 4.79086 8.79086 3 11 3C13.2091 3 15 4.79086 15 7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg><p id="username"></p><button onclick="window.open('https://academy.turiscool.com/profile', '_blank')">EDITAR PERFIL</button></div>
               <div class="star">
               <div class="moreInfo"><svg data-message="Aquí se muestra tu posición actual en el ranking en comparación con tus compañeros. Completa más cursos para obtener una mayor puntuación y así subir de posición en el ranking. ¡Ánimo!" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(180)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="7.25" r="1.25" fill="#000000"></circle> <rect x="11" y="10" width="2" height="8" fill="#000000"></rect> </g></svg></div>
                 <strong class="textoPosicion">TU RANKING</strong>
@@ -654,23 +673,28 @@ render() {
                   <p id="actualPosition"></p>
                 </svg>
               </div>
+              <div><svg fill="#000000" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M1750.21 0v1468.235h-225.882v338.824h169.412V1920H451.387c-82.447 0-161.506-36.141-214.701-99.388-43.934-51.953-67.652-116.33-67.652-182.965V282.353C169.034 126.494 295.528 0 451.387 0H1750.21Zm-338.823 1468.235H463.81c-89.223 0-166.136 59.86-179.576 140.047-1.242 9.036-2.259 18.07-2.259 27.106v2.26c0 40.658 13.553 77.928 40.659 109.552 32.753 38.4 79.059 59.859 128.753 59.859h960v-112.941H409.599v-112.942h1001.788v-112.94Zm225.882-1355.294H451.387c-92.725 0-169.412 75.67-169.412 169.412v1132.8c50.824-37.27 113.958-59.859 181.835-59.859h1173.46V112.941ZM1354.882 903.53v112.942H564.294V903.529h790.588Zm56.47-564.705v451.764H507.825V338.824h903.529Zm-112.94 112.94H620.765v225.883h677.647V451.765Z"
+                  fill-rule="evenodd"></path>
+              </g>
+              </svg> 
+              <p id="course-card-courses"></p>
+              <strong>CURSOS TOTALES</strong>
+            </div>
               <div>
                 <strong class="textoPosicion2">ÚLTIMO CURSO:</strong>
                   <p id="course-card-last-course">...</p> 
               </div>              
             </div>
             <div class="segundaFila">
-              <div class="h3"><svg fill="#000000" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                <g id="SVGRepo_iconCarrier">
-                  <path
-                    d="M1750.21 0v1468.235h-225.882v338.824h169.412V1920H451.387c-82.447 0-161.506-36.141-214.701-99.388-43.934-51.953-67.652-116.33-67.652-182.965V282.353C169.034 126.494 295.528 0 451.387 0H1750.21Zm-338.823 1468.235H463.81c-89.223 0-166.136 59.86-179.576 140.047-1.242 9.036-2.259 18.07-2.259 27.106v2.26c0 40.658 13.553 77.928 40.659 109.552 32.753 38.4 79.059 59.859 128.753 59.859h960v-112.941H409.599v-112.942h1001.788v-112.94Zm225.882-1355.294H451.387c-92.725 0-169.412 75.67-169.412 169.412v1132.8c50.824-37.27 113.958-59.859 181.835-59.859h1173.46V112.941ZM1354.882 903.53v112.942H564.294V903.529h790.588Zm56.47-564.705v451.764H507.825V338.824h903.529Zm-112.94 112.94H620.765v225.883h677.647V451.765Z"
-                    fill-rule="evenodd"></path>
-                </g>
-                </svg> 
-                <p id="course-card-courses"></p>
-                <strong>CURSOS TOTALES</strong>
+              <div class="h3">
+              <svg fill="#000000" height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M493.271,18.748C481.188,6.656,465.112,0,448.019,0s-33.169,6.656-45.252,18.748l-17.886,17.886 c-13.474-6.767-43.221-12.416-86.716,31.113l-102.4,102.4c-5.001,5.001-5.001,13.099,0,18.099c2.5,2.5,5.777,3.746,9.054,3.746 c3.277,0,6.554-1.246,9.054-3.746l102.4-102.4c21.367-21.385,37.419-27.776,47.65-28.254L44.358,377.148 c-21.854,21.854-24.559,55.714-8.132,80.546L3.765,490.155c-5,5.001-5,13.099,0,18.099c2.5,2.5,5.777,3.746,9.054,3.746 s6.554-1.246,9.054-3.746l32.461-32.461C64.71,482.68,76.87,486.4,89.619,486.4c17.092,0,33.169-6.656,45.252-18.748l358.4-358.4 C518.223,84.301,518.223,43.699,493.271,18.748z M116.772,449.553c-7.501,7.501-17.331,11.247-27.153,11.247 c-9.83,0-19.652-3.746-27.153-11.247c-14.993-14.993-14.993-39.313,0-54.306l4.062-4.062c0.427,0.623,0.691,1.323,1.237,1.869 l51.2,51.2c0.555,0.546,1.246,0.811,1.869,1.237L116.772,449.553z M138.31,428.015c-0.427-0.623-0.691-1.323-1.237-1.869 l-51.2-51.2c-0.555-0.546-1.246-0.811-1.869-1.237l212.932-212.932c0.418,0.623,0.683,1.323,1.229,1.877l51.2,51.2 c0.555,0.546,1.246,0.811,1.869,1.237L138.31,428.015z M475.172,91.153L368.71,197.615c-0.427-0.623-0.691-1.323-1.237-1.869 l-51.2-51.2c-0.555-0.546-1.246-0.811-1.869-1.237L420.866,36.847c7.492-7.501,17.323-11.247,27.153-11.247 s19.652,3.746,27.153,11.247C490.165,51.84,490.165,76.16,475.172,91.153z"></path> </g> </g> </g></svg>
+                <p id="course-card-units"></p>
+                <strong>LECCIONES COMPLETADAS</strong>
               </div>
               <div class="h3"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -728,21 +752,6 @@ render() {
       </div>
 
       </div>
-
-      <div class="container par">
-        <div class="container-content">
-          <div class="user-info">
-            <h4>Último usuario conectado</h4>
-            <h2 id="user-info-name" class="loading">Cargando</h2>
-          </div>
-          <div class="user-info">
-          <h4>Última conexion</h4>
-          <h2 id="user-info-date" class="loading">Cargando</h2>
-        </div>
-    </div>
-      </div>
-      </div>
-    
       <div class="container impar">
       <div class="moreInfo"><svg data-message="Completa más cursos para obtener una mayor puntuación y así subir de posición en el ranking. ¡Ánimo!" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(180)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="7.25" r="1.25" fill="#000000"></circle> <rect x="11" y="10" width="2" height="8" fill="#000000"></rect> </g></svg></div>
 
@@ -805,7 +814,7 @@ render() {
     
     
       <div class="container par statistics">
-        <h1 class="tituloTuEscuela">TU HOTEL</h1>
+        <h1 class="tituloTuEscuela">Métricas de tu Empresa</h1>
         <div class="container-content2">
           <div class="statistic">
     
@@ -822,6 +831,20 @@ render() {
           </div>
         </div>
       </div>
+
+      <div class="container par">
+      <div class="container-content">
+        <div class="user-info">
+          <h4>Último usuario conectado</h4>
+          <h2 id="user-info-name" class="loading">Cargando</h2>
+        </div>
+        <div class="user-info">
+          <h4>Última conexion</h4>
+          <h2 id="user-info-date" class="loading">Cargando</h2>
+        </div>
+      </div>
+    </div>
+  </div>
     
       <button class="btn" onclick="redirectButton()">VOLVER</button>
 
