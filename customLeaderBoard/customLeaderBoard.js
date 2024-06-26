@@ -512,9 +512,13 @@ async showTopUsers() {
         if (datosRecibidos) {
         spiner.style.display = 'none';
         }
-        let fila = document.createElement("tr");
-        fila.innerHTML = `<td>${i + 1}</td><td>${topUsers[i].name}</td><td>${topUsers[i].total}</td>`;
-        row.appendChild(fila);
+        let nombre = document.getElementById(`nombre${i + 1}`);
+        let scoreUser = document.getElementById(`scoreUser${i + 1}`);
+        let fila = document.getElementById(`fila${i + 1}`);
+
+        fila.style.removeProperty('display');
+        nombre.innerHTML = `${topUsers[i].name}`;
+        scoreUser.innerHTML = `${topUsers[i].total}`;
     }
   } else {
     for (let i = 0; i < topUsers.length; i++) {
@@ -522,9 +526,13 @@ async showTopUsers() {
         if (datosRecibidos) {
         spiner.style.display = 'none';
         }
-        let fila = document.createElement("tr");
-        fila.innerHTML = `<td>${i + 1}</td><td>${topUsers[i].name}</td><td>${topUsers[i].total}</td>`;
-        row.appendChild(fila);
+        let nombre = document.getElementById(`nombre${i + 1}`);
+        let scoreUser = document.getElementById(`scoreUser${i + 1}`);
+        let fila = document.getElementById(`fila${i + 1}`);
+
+        fila.style.removeProperty('display');
+        nombre.innerHTML = `${topUsers[i].name}`;
+        scoreUser.innerHTML = `${topUsers[i].total}`;
     }
   }
 
