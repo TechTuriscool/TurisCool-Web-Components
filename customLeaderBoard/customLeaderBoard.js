@@ -503,6 +503,7 @@ endCourse.innerHTML = `${this.progressFiltered.completedCourses}`;
 async showTopUsers() {
 let datosRecibidos = false;
 let topUsers = await this.showTop10();
+console.log(topUsers);
 let spinner = document.querySelector(".loader");
 
 if (topUsers.length >= 10) {
@@ -515,7 +516,7 @@ if (topUsers.length >= 10) {
     let scoreUser = document.getElementById(`scoreUser${i + 1}`);
     let fila = document.getElementById(`fila${i + 1}`);
 
-    if (!topUsers[i].name || !topUsers[i].total || topUsers[i].name === "undefined" || topUsers[i].total === "undefined"  ) {
+    if (!topUsers[i].name ||  topUsers[i].name === "undefined" || topUsers[i].total === "undefined"  ) {
       break;
     } else {
       fila.style.removeProperty('display');
