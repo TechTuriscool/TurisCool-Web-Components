@@ -16,7 +16,7 @@ export class customLeaderBoard extends HTMLElement {
 
       this.actualuser = "";
       this.tag = "";
-      this.redirect = "new-al-v2-growersgo"
+      this.redirect = "";
       this.pages = 0;
       this.user = {};
       this.users = [];
@@ -76,7 +76,7 @@ export class customLeaderBoard extends HTMLElement {
 
 
 redirectButton() {
-window.location.href = `https://academy.turiscool.com/${redirect}`;
+window.location.href = `https://academy.turiscool.com/${this.redirect}`;
 }
 
 static get observedAttributes() {
@@ -846,7 +846,7 @@ render() {
     </div>
   </div>
     
-      <button class="btn" onclick="redirectButton()">VOLVER</button>
+      <button id="btn-redirect" class="btn" urlRedirect='${this.redirect}'>VOLVER</button>
 
       <div id="myModal" class="modal">
         <div class="modal-content">
@@ -868,7 +868,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const modal = document.getElementById('myModal');
   const span = document.getElementsByClassName('close')[0];
   const modalMessage = document.getElementById('modal-message');
+  const btnRedirect = document.getElementById('btn-redirect');
 
+  btnRedirect.addEventListener('click', function () {
+      const redirect = this.getAttribute('urlRedirect');
+      window.location.href = 'https://academy.turiscool.com/' + redirect;
+  });
+  
   document.querySelectorAll('svg[data-message]').forEach(svg => {
     svg.addEventListener('click', function () {
       const message = this.getAttribute('data-message');
