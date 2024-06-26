@@ -272,7 +272,7 @@ this.showTopUsers3();
 this.showUserMe();
 this.showCourseInfo()
 this.filterCourses();
-this.showInfoUser();
+//this.showInfoUser();
 }
 
 courseInfo() {
@@ -501,40 +501,50 @@ endCourse.innerHTML = `${this.progressFiltered.completedCourses}`;
 }
 
 async showTopUsers() {
-let datosRecibidos = false;
-let topUsers = await this.showTop10();
-console.log(topUsers);
-let spinner = document.querySelector(".loader");
+  let datosRecibidos = false;
+  let topUsers = await this.showTop10();
+  let row = document.getElementById("top10Users");
+  let spiner = document.querySelector(".loader");
 
-if (topUsers.length >= 10) {
-  for (let i = 0; i < 10; i++) {
-    datosRecibidos = true;
-    if (datosRecibidos) {
-      spinner.style.display = 'none';
+  if(topUsers.lengh >= 10){
+    for (let i = 0; i < 10; i++) {
+        datosRecibidos = true;
+        if (datosRecibidos) {
+        spiner.style.display = 'none';
+        }
+        let fila = document.createElement("tr");
+        fila.innerHTML = `<td>${i + 1}</td><td>${topUsers[i].name}</td><td>${topUsers[i].total}</td>`;
+        row.appendChild(fila);
     }
-    let nombre = document.getElementById(`nombre${i + 1}`);
-    let scoreUser = document.getElementById(`scoreUser${i + 1}`);
-    let fila = document.getElementById(`fila${i + 1}`);
-
-    if (!topUsers[i].name ||  topUsers[i].name === "undefined" || topUsers[i].total === "undefined"  ) {
-      break;
-    } else {
-      fila.style.removeProperty('display');
-      nombre.innerHTML = `${topUsers[i].name}`;
-      scoreUser.innerHTML = `${topUsers[i].total}`;
+  } else {
+    for (let i = 0; i < topUsers.length; i++) {
+        datosRecibidos = true;
+        if (datosRecibidos) {
+        spiner.style.display = 'none';
+        }
+        let fila = document.createElement("tr");
+        fila.innerHTML = `<td>${i + 1}</td><td>${topUsers[i].name}</td><td>${topUsers[i].total}</td>`;
+        row.appendChild(fila);
     }
   }
-}
+
+
 }
 
 async showTopUsers3() {
-let topUsers = await this.showTop10();
+  let datosRecibidos = false;
+  let spiner = document.querySelectorAll('.spinerVisible');
+  let topUsers = await this.showTop10();
+  console.log(topUsers);
 
-for (let i = 0; i < 3; i++) {
-  let position = document.getElementById(`position${i + 1}`);
-  position.innerHTML = `${i + 1}º - ${topUsers[i].name}`;
-
-}
+  for (let i = 0; i < 3; i++) {
+    let position = document.getElementById(`position${i + 1}`);
+    datosRecibidos = true;
+    if (datosRecibidos) {
+      spiner[i].style.display = 'none';
+    }
+    position.innerHTML = `${i + 1}º - ${topUsers[i].name}`;
+  }
 }
 
 async showUserMe() {
