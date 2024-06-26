@@ -575,6 +575,7 @@ if (datosRecibidos) {
 }
 }
 
+/*
 async showInfoUser() {
 let datosRecibidos = false;
 datosRecibidos = true;
@@ -589,13 +590,12 @@ if (datosRecibidos) {
   userDate.classList.remove('loading');
 }
 }
+*/
 
 async filterProgressUser() {
 this.progressFiltered.totalCourses = this.progress.length;
 let totalProgress = 0;
 let totalTime = 0;
-
-console.log(this.progress)
 
 for (let i = 0; i < this.progress.length; i++) {
   if (this.progress[i].progress_rate > 0 && this.progress[i].progress_rate < 100) {
@@ -812,7 +812,7 @@ render() {
     
       </div>
     
-    
+  
       <div class="container par statistics">
         <h1 class="tituloTuEscuela">Métricas de tu Empresa</h1>
         <div class="container-content2">
@@ -831,19 +831,6 @@ render() {
           </div>
         </div>
       </div>
-
-      <div class="container par">
-      <div class="container-content">
-        <div class="user-info">
-          <h4>Último usuario conectado</h4>
-          <h2 id="user-info-name" class="loading">Cargando</h2>
-        </div>
-        <div class="user-info">
-          <h4>Última conexion</h4>
-          <h2 id="user-info-date" class="loading">Cargando</h2>
-        </div>
-      </div>
-    </div>
   </div>
     
       <button id="btn-redirect" class="btn" urlRedirect='${this.redirect}'>VOLVER</button>
@@ -860,7 +847,20 @@ render() {
 
 };
 
-
+/* Ultima conexion
+<div class="container par">
+<div class="container-content">
+  <div class="user-info">
+    <h4>Último usuario conectado</h4>
+    <h2 id="user-info-name" class="loading">Cargando</h2>
+  </div>
+  <div class="user-info">
+    <h4>Última conexion</h4>
+    <h2 id="user-info-date" class="loading">Cargando</h2>
+  </div>
+</div>
+</div>
+*/
 }
 
 // DOCUMENT ADDEVENTLISTENER
