@@ -582,7 +582,13 @@ courses.innerHTML = `${coursesData.totalCoursesCompleted} cursos`;
 
 let time = document.getElementById("statistic-hours");
 coursesData.totalTime = Math.round(coursesData.totalTime / 60);
-time.innerHTML = `${coursesData.totalTime} horas`;
+
+if (coursesData.totalTime > 60) {
+  coursesData.totalTime = Math.round(coursesData.totalTime / 60);
+  time.innerHTML = `${coursesData.totalTime} horas`;
+} else {
+  time.innerHTML = `${coursesData.totalTime} minutos`;
+}
 
 let lessons = document.getElementById("statistic-units");
 lessons.innerHTML = `${coursesData.totalUnits} lecciones`;
