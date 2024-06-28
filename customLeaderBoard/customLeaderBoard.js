@@ -843,7 +843,7 @@ render() {
         <div class="container-content2">
           <div class="statistic">
     
-            <h2>Horas estudiadas</h2>
+            <h2>Tiempo Estudiado</h2>
             <p id="statistic-hours" class="loading">Cargando</p>
           </div>
           <div class="statistic">
