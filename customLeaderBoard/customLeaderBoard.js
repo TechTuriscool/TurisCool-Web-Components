@@ -208,32 +208,54 @@ this.delay(1000).then(() => {
 });
 }
 
-fetchProgress() {
-let fetchPromises = [];
-this.delay(1000).then(() => {
+async fetchProgress() {
+  let fetchPromises = [];
+
   for (let i = 0; i < this.usersByTag.length; i++) {
-    fetchPromises.push(
-      fetch(`${this.url}/v2/users/${this.usersByTag[i].id}/progress`, this.requestOptions)
-        .then(response => response.json())
-        .then(progressData => {
-          const isDuplicate = this.filteredUsers.some(user => user.userID === this.usersByTag[i].id);
-          if (!isDuplicate) {
-            progressData.name = this.usersByTag[i].name;
-            progressData.userID = this.usersByTag[i].id;
-            progressData.nps = this.usersByTag[i].nps;
-            progressData.lastLogin = this.usersByTag[i].lastLogin;
-            this.filteredUsers.push(progressData);
-          }
-        })
-    );
+    let progressDataFiltered = { data: [] };
+
+    let totalPages = await this.fetchTotalPagesProgress(this.usersByTag[i].id);
+    console.log(totalPages);
+    for (let j = 1; j <= totalPages; j++) {
+      fetchPromises.push(
+        fetch(`${this.url}/v2/users/${this.usersByTag[i].id}/progress?items_per_page=40&page=${j}`, this.requestOptions)
+          .then(response => response.json())
+          .then(progressData => {
+            if (progressDataFiltered.data.length === 0) {
+              progressDataFiltered = { ...progressData, data: [...progressData.data] };
+              console.log(progressDataFiltered);
+            } else {
+              progressDataFiltered.data.push(...progressData.data);
+            }
+
+            if (j === totalPages) {
+              const isDuplicate = this.filteredUsers.some(user => user.userID === this.usersByTag[i].id);
+
+              if (!isDuplicate) {
+                progressDataFiltered.name = this.usersByTag[i].name;
+                progressDataFiltered.userID = this.usersByTag[i].id;
+                progressDataFiltered.nps = this.usersByTag[i].nps;
+                progressDataFiltered.lastLogin = this.usersByTag[i].lastLogin;
+                this.filteredUsers.push(progressDataFiltered);
+              }
+            }
+          })
+      );
+    }
   }
 
   Promise.allSettled(fetchPromises)
     .then(() => {
       this.filterProgress();
     });
-});
 }
+
+async fetchTotalPagesProgress(id) {
+  const response = await fetch(`${this.url}/v2/users/${id}/progress?items_per_page=40`, this.requestOptions);
+  const progressData = await response.json();
+  return progressData.meta.totalPages;
+}
+
 
 
 /////////////////////////// FUNCIONES DE FILTRADO DE DATOS ///////////////////////////
@@ -543,7 +565,6 @@ async showTopUsers3() {
   let datosRecibidos = false;
   let spiner = document.querySelectorAll('.spinerVisible');
   let topUsers = await this.showTop10();
-  console.log(topUsers);
 
   for (let i = 0; i < 3; i++) {
     let position = document.getElementById(`position${i + 1}`);
@@ -867,6 +888,12 @@ render() {
         </div>
       </div>
 
+      <div id="myModal2" class="modal2">
+      <div class="modal-content2">
+        <span class="close close2">&times;</span>
+        <p id="modal-message2">El tiempo de espera puede variar según el número de usuarios. Por favor, espere.</p>
+      </div>
+    </div>
   `;
   this.functionStart();
 
@@ -919,7 +946,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
       modal.style.display = 'none';
     }
   }
+
+  const modal2 = document.getElementById('myModal2');
+  const span2 = document.getElementsByClassName('close2')[0];
+
+  span2.onclick = function() {
+    modal2.style.display = 'none';
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal2) {
+      modal2.style.display = 'none';
+    }
+  }
 });
+
 
 
 window.customElements.define('custom-leaderboard', customLeaderBoard);
