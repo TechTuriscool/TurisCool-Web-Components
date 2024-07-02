@@ -884,16 +884,10 @@ render() {
       <div id="myModal" class="modal">
         <div class="modal-content">
           <span class="close">&times;</span>
-          <p id="modal-message">Aquí puedes poner tu mensaje personalizado</p>
+          <p id="modal-message">El tiempo de espera puede variar según el número de usuarios. Por favor, espere.</p>
         </div>
       </div>
 
-      <div id="myModal2" class="modal2">
-      <div class="modal-content2">
-        <span class="close close2">&times;</span>
-        <p id="modal-message2">El tiempo de espera puede variar según el número de usuarios. Por favor, espere.</p>
-      </div>
-    </div>
   `;
   this.functionStart();
 
@@ -922,6 +916,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const modalMessage = document.getElementById('modal-message');
   const btnRedirect = document.getElementById('btn-redirect');
 
+  modal.style.display = 'block';
+
   btnRedirect.addEventListener('click', function () {
       const redirect = this.getAttribute('urlRedirect');
       window.location.href = 'https://academy.turiscool.com/' + redirect;
@@ -946,21 +942,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       modal.style.display = 'none';
     }
   }
-
-  const modal2 = document.getElementById('myModal2');
-  const span2 = document.getElementsByClassName('close2')[0];
-
-  span2.onclick = function() {
-    modal2.style.display = 'none';
-  }
-
-  window.onclick = function(event) {
-    if (event.target == modal2) {
-      modal2.style.display = 'none';
-    }
-  }
 });
-
 
 
 window.customElements.define('custom-leaderboard', customLeaderBoard);
