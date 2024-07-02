@@ -215,7 +215,6 @@ async fetchProgress() {
     let progressDataFiltered = { data: [] };
 
     let totalPages = await this.fetchTotalPagesProgress(this.usersByTag[i].id);
-    console.log(totalPages);
     for (let j = 1; j <= totalPages; j++) {
       fetchPromises.push(
         fetch(`${this.url}/v2/users/${this.usersByTag[i].id}/progress?items_per_page=40&page=${j}`, this.requestOptions)
@@ -223,7 +222,6 @@ async fetchProgress() {
           .then(progressData => {
             if (progressDataFiltered.data.length === 0) {
               progressDataFiltered = { ...progressData, data: [...progressData.data] };
-              console.log(progressDataFiltered);
             } else {
               progressDataFiltered.data.push(...progressData.data);
             }
