@@ -213,11 +213,11 @@ async fetchProgress() {
 
   for (let i = 0; i < this.usersByTag.length; i++) {
     let progressDataFiltered = { data: [] };
-    console.log(this.usersByTag);
+    //console.log(this.usersByTag);
 
     let totalPages = await this.fetchTotalPagesProgress(this.usersByTag[i].id);
     for (let j = 1; j <= totalPages; j++) {
-      console.log(totalPages);
+      //console.log(totalPages);
       await this.delay(400);
       fetchPromises.push(
         fetch(`${this.url}/v2/users/${this.usersByTag[i].id}/progress?items_per_page=200&page=${j}`, this.requestOptions)
