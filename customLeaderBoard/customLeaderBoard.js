@@ -213,11 +213,14 @@ async fetchProgress() {
 
   for (let i = 0; i < this.usersByTag.length; i++) {
     let progressDataFiltered = { data: [] };
+    console.log(this.usersByTag);
 
     let totalPages = await this.fetchTotalPagesProgress(this.usersByTag[i].id);
     for (let j = 1; j <= totalPages; j++) {
+      console.log(totalPages);
+      await this.delay(400);
       fetchPromises.push(
-        fetch(`${this.url}/v2/users/${this.usersByTag[i].id}/progress?items_per_page=40&page=${j}`, this.requestOptions)
+        fetch(`${this.url}/v2/users/${this.usersByTag[i].id}/progress?items_per_page=200&page=${j}`, this.requestOptions)
           .then(response => response.json())
           .then(progressData => {
             if (progressDataFiltered.data.length === 0) {
@@ -249,7 +252,7 @@ async fetchProgress() {
 }
 
 async fetchTotalPagesProgress(id) {
-  const response = await fetch(`${this.url}/v2/users/${id}/progress?items_per_page=40`, this.requestOptions);
+  const response = await fetch(`${this.url}/v2/users/${id}/progress?items_per_page=200`, this.requestOptions);
   const progressData = await response.json();
   return progressData.meta.totalPages;
 }
@@ -263,6 +266,14 @@ this.users.filter(user => {
     this.usersByTag.push(user);
   }
 });
+
+// Eliminar duplicados
+this.usersByTag = this.usersByTag.filter((user, index, self) =>
+  index === self.findIndex((t) => (
+    t.id === user.id
+  ))
+);
+
 this.fetchProgress();
 }
 
